@@ -1,0 +1,17 @@
+{"protocols":[{
+"id":"protocol_1",
+"name":"FlushOut"
+},
+{
+"id":"protocol_2",
+"name":"Power"
+},{
+"id":"protocol_3",
+"name":"Internsity"
+},{
+"id":"protocol_4",
+"name":"Endurance"
+},{
+"id":"protocol_5",
+"name":"Maintence"
+}]}
