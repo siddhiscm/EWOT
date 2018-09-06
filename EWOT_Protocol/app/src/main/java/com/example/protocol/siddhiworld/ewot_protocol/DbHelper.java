@@ -73,6 +73,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         try {
             String jsonDatastring=readJsonDataFromFile();
+<<<<<<< HEAD
             JSONArray menuItemsJsonArray = new JSONArray(jsonDatastring);
 
             for (int i=0;i<menuItemsJsonArray.length();++i){
@@ -80,6 +81,16 @@ public class DbHelper extends SQLiteOpenHelper {
                 String name;
 
                 JSONObject menuItemobject = menuItemsJsonArray.getJSONObject(i);
+=======
+            JSONObject jsonObject =new JSONObject();
+            JSONArray protocols = jsonObject.getJSONArray("protocols");
+
+            for (int i=0;i<protocols.length();i++){
+                String id;
+                String name;
+
+                JSONObject menuItemobject = protocols.getJSONObject(i);
+>>>>>>> 4674ac6f409d28665d491131adec1a5485d80502
 
                 id = menuItemobject.getString(MNU_ID);
                 name = menuItemobject.getString(MNU_NAME);
@@ -96,7 +107,11 @@ public class DbHelper extends SQLiteOpenHelper {
         StringBuilder builder = new StringBuilder();
         try {
             String jsonDataString= null;
+<<<<<<< HEAD
             inputStream = mResources.openRawResource(R.raw.protocol_info);
+=======
+            inputStream = mResources.openRawResource(R.raw.protocols);
+>>>>>>> 4674ac6f409d28665d491131adec1a5485d80502
             BufferedReader bufferedReader = new BufferedReader(
                     new InputStreamReader(inputStream,"UTF-8"));
             while ((jsonDataString = bufferedReader.readLine()) !=null){
