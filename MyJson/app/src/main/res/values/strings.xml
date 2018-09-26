@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SmartBreath</string>
+    <string name="drs">Basic Training Protocol \n\n \t\t\t This protocol is inspired by Phil Campbell’s Interval Training Model, It stimulates HGH and EPO by utilizing simultaneous hypoxia and hypoglycemia, separated by hyperoxia.
+    \n\n \t\t\t\t\t TotalDuration":"16-22",</string>
+    <string name="AboutUs"><![CDATA[ABOUT SIDDHI WORLD\n\n\t\t\t\t Siddhi Global Consulting Engineers
+    is a Pune based highly experienced Engineering and Techno-commercial Consultancy Organization involved in
+    providing Consultancy Services in the fields of Mechanical, Electrical, Instrumentation engineering & IT
+    services since 1996 and is backed by ISO 9001:2008 certifications.]]></string>
+    <string name="Start">Start</string>
+    <string name="Cancel">Cancel</string>
+</resources>
