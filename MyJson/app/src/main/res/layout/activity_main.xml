@@ -18,6 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name"
+            android:paddingLeft="20dp"
+            android:paddingBottom="12dp"
             android:textStyle="normal|bold"
             android:fontFamily="sans-serif"
             android:textColor="@color/white_color"
@@ -26,16 +28,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingBottom="12dp"
+            android:paddingLeft="20dp"
             android:text="1000"
             android:textColor="@color/white_color"
-            android:textStyle="normal|bold"
-            android:fontFamily="sans-serif"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Running"
+            android:paddingLeft="20dp"
+            android:paddingBottom="9dp"
             android:textColor="@color/white_color"
 
             android:textSize="14sp"
