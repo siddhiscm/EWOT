@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/protocolpage3frag_relativelayout"
     android:background="@color/colorPrimary">
 
     <ProgressBar
@@ -31,7 +32,7 @@
         android:id="@+id/P1"
         android:gravity="left"
         android:justificationMode="inter_word"
-        android:text="@string/protocol2"
+        android:text="@string/protocol3"
         android:textSize="16sp"
         android:textStyle="normal|bold|italic"
         android:textColor="@color/white_color"/>

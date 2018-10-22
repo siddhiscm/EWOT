@@ -32,9 +32,8 @@ public class SampleActivity extends AppCompatActivity {
     private Button mButtoncancel;
     private CountDownTimer mcountDownTimer;
     private boolean mTimerRunning;
-    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    private long mTimeLeftInMillis = 10000;
     ProgressBar mProgressBar = null;
-
     String[] descriptionData = {"WarmUp","CoolDown","Oxygen","Sprint","EPO","HGS"};
     StateProgressBar stateProgressBar;
     @Override
@@ -56,39 +55,22 @@ public class SampleActivity extends AppCompatActivity {
                 mButtoncancel.setBackgroundColor(getResources().getColor(R.color.white_color));
                 ViewPager viewPager=(ViewPager)findViewById(R.id.viewPager);
                 viewPager.setVisibility(View.GONE);
-
-                //TextView textview = (TextView) findViewById(R.id.P1);
-                //textview.setVisibility(View.GONE);
                 mButtonStartPause.setBackgroundColor(getResources().getColor(R.color.grey));
                 mButtonStartPause.setTextColor(getResources().getColor(R.color.app_black));
                 mProgressBar.setVisibility(View.VISIBLE);
                 mTextViewCountDown.setVisibility(View.VISIBLE);
-                // reset the value to 100000 if the previous state is cancel, else dont reset
-               // if() {
-                    //mTimeLeftInMillis = START_TIME_IN_MILLIS;
-               // }
-                setProgressBarValues();
-                //   if (mTimerRunning){
-                // pauseTimer();
-                startTimer(START_TIME_IN_MILLIS);
+                setProgressBarValues(mTimeLeftInMillis);
+                startTimer(mTimeLeftInMillis);
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
 
-                //  }
-                //else {
-                //    startTimer();
 
-//                }
             }
         });
 
-        /*mButtonReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resetTimer();
 
-            }
-        }); */
 
-        updateCountDownText(START_TIME_IN_MILLIS);
+       updateCountDownText(mTimeLeftInMillis);
+
 
         tvDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,11 +82,10 @@ public class SampleActivity extends AppCompatActivity {
                 tvAboutUs.setTextColor(getResources().getColor(R.color.app_black));
                 tvAboutUs.setBackgroundColor(getResources().getColor(R.color.white_color));
                 rStartStop.setVisibility(View.VISIBLE);
-                //mProgressBar.setVisibility(View.VISIBLE);
-                //mTextViewCountDown.setVisibility(View.VISIBLE);
                 mButtonStartPause.setVisibility(View.VISIBLE);
                 mButtoncancel.setVisibility(View.VISIBLE);
                 mButtoncancel.setEnabled(false);
+                stateProgressBar.setVisibility(View.GONE);
                 mButtoncancel.setBackgroundColor(getResources().getColor(R.color.grey));
         replacefragment(new FragDashBoard());
     }
@@ -122,6 +103,7 @@ public class SampleActivity extends AppCompatActivity {
                 rStartStop.setVisibility(View.GONE);
                 mProgressBar.setVisibility(View.GONE);
                 mTextViewCountDown.setVisibility(View.GONE);
+                stateProgressBar.setVisibility(View.GONE);
                 replacefragment(new FragProtocalInfo());
             }
         });
@@ -137,69 +119,29 @@ public class SampleActivity extends AppCompatActivity {
                 rStartStop.setVisibility(View.GONE);
                 mProgressBar.setVisibility(View.GONE);
                 mTextViewCountDown.setVisibility(View.GONE);
+                stateProgressBar.setVisibility(View.GONE);
                 replacefragment(new FragAboutUs());
             }
         });
     }
+
     private void startTimer(final long startTimeInMillis) {
         mcountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText(startTimeInMillis);
-                //  mTextViewCountDown.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFinish() {
                 mTimerRunning = true;
                 mTimeLeftInMillis = startTimeInMillis;
-                //mButtonStartPause.setText("Start");
                 mTextViewCountDown.setVisibility(View.INVISIBLE);
                 mButtonStartPause.setVisibility(View.VISIBLE);
-                // mButtonReset.setVisibility(View.VISIBLE);
                 mProgressBar.setVisibility(View.INVISIBLE);
                 mButtonStartPause.setEnabled(true);
-                switch (stateProgressBar.getCurrentStateNumber()) {
-                    case 1:
-                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
-                        startTimer(20000);
-                        mProgressBar.setVisibility(View.VISIBLE);
-                        mButtonStartPause.setEnabled(false);
-                        mTextViewCountDown.setVisibility(View.VISIBLE);
-                        break;
-                    case 2:
-                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
-                        startTimer(1001011);
-                        mButtonStartPause.setEnabled(false);
-                        mProgressBar.setVisibility(View.VISIBLE);
-                        mTextViewCountDown.setVisibility(View.VISIBLE);
-                        break;
-                    case 3:
-                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
-                        startTimer(1001010);
-                        mProgressBar.setVisibility(View.VISIBLE);
-                        mButtonStartPause.setEnabled(false);
-                        mTextViewCountDown.setVisibility(View.VISIBLE);
-                        break;
-                    case 4:
-                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
-                        startTimer(10010);
-                        mButtonStartPause.setEnabled(false);
-                        mProgressBar.setVisibility(View.VISIBLE);
-                        mTextViewCountDown.setVisibility(View.VISIBLE);
-                        break;
-                    case 5:
-                        stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.SIX);
-                        startTimer(10010);
-                        mButtonStartPause.setEnabled(false);
-                        mProgressBar.setVisibility(View.VISIBLE);
-                        mTextViewCountDown.setVisibility(View.VISIBLE);
-                        break;
-                    case 6:
-                        stateProgressBar.setAllStatesCompleted(true);
-                        break;
-                }
+                stagesTime();
 
             }
         }.start();
@@ -209,13 +151,77 @@ public class SampleActivity extends AppCompatActivity {
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
         mProgressBar.setProgress((int) (mTimeLeftInMillis / 1000));
         mButtoncancel.setEnabled(true);
-
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         mTextViewCountDown.setText(timeLeftFormatted);
     }
-    private void setProgressBarValues() {
-        mProgressBar.setMax((int) START_TIME_IN_MILLIS / 1000);
-        mProgressBar.setProgress((int) mTimeLeftInMillis / 1000);
+    private void setProgressBarValues(long mTimeLeftInMillis) {
+        mProgressBar.setMax((int) mTimeLeftInMillis / 1000);
+        mProgressBar.setProgress((int) this.mTimeLeftInMillis / 1000);
+    }
+    public void stagesTime(){
+        switch (stateProgressBar.getCurrentStateNumber()) {
+            case 1:
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                mTimeLeftInMillis=20000;
+                startTimer(mTimeLeftInMillis);
+                mProgressBar.setMax((int) this.mTimeLeftInMillis / 1000);
+                mProgressBar.setProgress((int) this.mTimeLeftInMillis / 1000);
+                mProgressBar.setVisibility(View.VISIBLE);
+                mButtonStartPause.setEnabled(false);
+                mTextViewCountDown.setVisibility(View.VISIBLE);
+
+                break;
+            case 2:
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                mTimeLeftInMillis=30000;
+                startTimer(mTimeLeftInMillis);
+                mProgressBar.setMax((int) this.mTimeLeftInMillis / 1000);
+                mProgressBar.setProgress((int) this.mTimeLeftInMillis / 1000);
+                // startTimer(1001011);
+                mButtonStartPause.setEnabled(false);
+                mProgressBar.setVisibility(View.VISIBLE);
+                mTextViewCountDown.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                mTimeLeftInMillis=40000;
+                startTimer(mTimeLeftInMillis);
+                mProgressBar.setMax((int) this.mTimeLeftInMillis / 1000);
+                mProgressBar.setProgress((int) this.mTimeLeftInMillis / 1000);
+                //startTimer(1001010);
+                mProgressBar.setVisibility(View.VISIBLE);
+                mButtonStartPause.setEnabled(false);
+                mTextViewCountDown.setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
+                mTimeLeftInMillis=50000;
+                startTimer(mTimeLeftInMillis);
+                mProgressBar.setMax((int) this.mTimeLeftInMillis / 1000);
+                mProgressBar.setProgress((int) this.mTimeLeftInMillis / 1000);
+                //startTimer(1001010);
+                mProgressBar.setVisibility(View.VISIBLE);
+                mButtonStartPause.setEnabled(false);
+                mTextViewCountDown.setVisibility(View.VISIBLE);
+                break;
+            case 5:
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.SIX);
+                mTimeLeftInMillis=60000;
+                startTimer(mTimeLeftInMillis);
+                mProgressBar.setMax((int) this.mTimeLeftInMillis / 1000);
+                mProgressBar.setProgress((int) this.mTimeLeftInMillis / 1000);
+                // startTimer(1001010);
+                mProgressBar.setVisibility(View.VISIBLE);
+                mButtonStartPause.setEnabled(false);
+                mTextViewCountDown.setVisibility(View.VISIBLE);
+                break;
+            case 6:
+                stateProgressBar.setAllStatesCompleted(true);
+                stateProgressBar.setVisibility(View.GONE);
+                mButtonStartPause.setEnabled(true);
+                break;
+        }
+
     }
     private void initialize() {
         tvDashboard = findViewById(R.id.txtDashboard);
@@ -242,20 +248,23 @@ public class SampleActivity extends AppCompatActivity {
         builder.setTitle("Message");
         builder.setMessage("Do you really want to End the session?");
         builder.setIcon(R.drawable.alert);
+        mcountDownTimer.cancel();
         AlertDialog.OnClickListener listener = new AlertDialog.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                mcountDownTimer.cancel();
+
                 if (i == dialogInterface.BUTTON_POSITIVE) {
                     mTimeLeftInMillis = START_TIME_IN_MILLIS;
+
                     mTextViewCountDown.setVisibility(View.GONE);
                     mProgressBar.setVisibility(View.INVISIBLE);
                     mButtonStartPause.setEnabled(true);
                     mButtonStartPause.setText("Start");
                     tvDashboard.setEnabled(true);
+                    stateProgressBar.setVisibility(View.GONE);
+                    //stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
                     ViewPager viewPager=(ViewPager)findViewById(R.id.viewPager);
                     viewPager.setVisibility(View.VISIBLE);
-                    stateProgressBar.setVisibility(View.GONE);
                     tvProtocal.setEnabled(true);
                     mButtoncancel.setEnabled(false);
                     mButtoncancel.setBackgroundColor(getResources().getColor(R.color.grey

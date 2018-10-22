@@ -5,6 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
+    android:id="@+id/scrollView1"
     android:background="@color/colorPrimary">
 
 
@@ -35,6 +36,7 @@
         </TableRow>
 
         <TableRow
+
             android:id="@+id/tableRow4"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -46,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:background="@drawable/cell_shape"
                 android:textColor="@color/white_color"
                 android:paddingLeft="50dp"
                 android:text="@string/phase"
@@ -57,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:background="@drawable/cell_shape"
                 android:textColor="@color/white_color"
                 android:paddingLeft="10dp"
                 android:text="@string/altitude"
@@ -68,6 +72,7 @@
                 android:layout_width="145dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:background="@drawable/cell_shape"
                 android:paddingLeft="15dp"
                 android:textColor="@color/white_color"
                 android:text="@string/method"
@@ -81,6 +86,7 @@
                 android:gravity="left"
                 android:paddingRight="70sp"
                 android:text="@string/time"
+                android:background="@drawable/cell_shape"
                 android:textColor="@color/white_color"
                 android:textAlignment="center"
                 android:textStyle="bold">
@@ -94,6 +100,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
+            android:background="@drawable/cell_shape"
             android:textAlignment="center">
 
             <TextView
@@ -139,12 +146,11 @@
                 android:textStyle="bold">
 
             </TextView>
-
-
         </TableRow>
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
             android:textAlignment="center">
@@ -170,7 +176,6 @@
                 android:textStyle="bold">
 
             </TextView>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -200,6 +205,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
+            android:background="@drawable/cell_shape"
             android:textAlignment="center">
 
             <TextView
@@ -251,6 +257,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:paddingTop="20dp"
+            android:background="@drawable/cell_shape"
             android:textAlignment="center">
 
             <TextView
