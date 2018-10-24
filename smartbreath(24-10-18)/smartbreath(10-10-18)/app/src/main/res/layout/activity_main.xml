@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDA50F"
+    android:id="@+id/mainrelativelayout"
+    tools:context="app.json.com.myjson.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:id="@+id/mainlinearlayout"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome Siddhi!!!"
+            android:paddingLeft="20dp"
+            android:paddingBottom="12dp"
+            android:textStyle="normal|bold"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingBottom="12dp"
+            android:paddingLeft="20dp"
+            android:text="You have 100 mins of O2+ remaining"
+            android:textColor="@color/white_color"
+            android:textSize="14sp"
+            android:textStyle="normal|bold" />
+    </LinearLayout>
+
+    <TableRow
+        android:id="@+id/linTabHeader"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginTop="86dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/txtDashboard"
+            android:layout_weight="1"
+            android:text="Dashboard"
+            android:textSize="16dp"
+            android:textColor="@color/white_color"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:textStyle="normal|bold"
+            android:layout_margin="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <View
+            android:layout_width="0.1dp"
+            android:layout_margin="4dp"
+            android:background="#000000"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtProtocalInfo"
+            android:text="Protocol info"
+            android:textStyle="normal|bold"
+            android:textColor="@color/white_color"
+            android:textSize="16dp"
+            android:fontFamily="sans-serif"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_margin="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_margin="4dp"
+            android:background="#000000"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/txtAboutUs"
+            android:layout_weight="1"
+            android:layout_margin="3dp"
+            android:text="About Us"
+            android:textStyle="normal|bold"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white_color"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </TableRow>
+
+    <LinearLayout
+        android:id="@+id/relFrame"
+        android:layout_below="@+id/linTabHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/frame_container"
+            android:layout_marginTop="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/linTabHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/drawable_circle_dark_blue"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="100"
+            android:progressDrawable="@drawable/drawable_circle_grey"
+            android:rotation="-90"
+            android:secondaryProgress="100" />
+        <TextView
+            android:id="@+id/text_view_countdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="115dp"
+            android:layout_centerHorizontal="true"
+            android:text="10Sec"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:visibility="gone"/>
+
+        <com.kofigyan.stateprogressbar.StateProgressBar
+            android:id="@+id/your_state_progress_bar_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="103dp"
+            app:spb_animateToCurrentProgressState="true"
+            app:spb_checkStateCompleted="true"
+            android:visibility="gone"
+            app:spb_currentStateDescriptionColor="#009688"
+            app:spb_currentStateNumber="one"
+            app:spb_stateBackgroundColor="#BDBDBD"
+            app:spb_stateDescriptionColor="#808080"
+            app:spb_stateForegroundColor="#009688"
+            app:spb_stateNumberBackgroundColor="#808080"
+            app:spb_stateNumberForegroundColor="#eeeeee" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button_start_pause"
+            android:layout_width="130dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="15dp"
+            android:background="@color/white_color"
+            android:text="@string/Start"
+            android:visibility="gone"
+            android:textColor="#FDA50F"
+            android:textSize="16sp"
+            android:textStyle="normal|bold" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="129dp"
+            android:layout_height="28dp"
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="21dp"
+            android:background="@color/white_color"
+            android:onClick="alert"
+            android:enabled="false"
+            android:text="@string/Cancel"
+            android:textColor="#FDA50F"
+            android:textSize="16sp"
+            android:textStyle="normal|bold"
+            tools:ignore="OnClick" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
