@@ -1,0 +1,18 @@
+{
+  "name":"protocol name",
+  "description":"protocol name",
+  "totalDuration":"protocol name",
+  "numberofStages":"protocol name",
+  "suitablePersonality" : "Aged above 60, Athelets, etc..",
+
+  "stages":{
+    "name1": "warm up",
+    "positiveO2": "10",
+    "negativeO2": "0",
+    "altitude":"23dmf",
+    "method":"msdweij",
+    "description1":"mcncsdjdxzm"
+
+
+  }
+}

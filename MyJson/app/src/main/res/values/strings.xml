@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">SmartBreath</string>
+    <string name="drs">Basic Training Protocol \n\n \t\t\t This protocol is inspired by Phil Campbell’s Interval Training Model, It stimulates HGH and EPO by utilizing simultaneous hypoxia and hypoglycemia, separated by hyperoxia.
+    \n\n \t\t\t\t\t TotalDuration":"16-22",</string>
+    <string name="AboutUs"><![CDATA[ABOUT SIDDHI WORLD\n\n\t\t\t\t Siddhi Global Consulting Engineers
+    is a Pune based highly experienced Engineering and Techno-commercial Consultancy Organization involved in
+    providing Consultancy Services in the fields of Mechanical, Electrical, Instrumentation engineering & IT
+    services since 1996 and is backed by ISO 9001:2008 certifications.]]></string>
+    <string name="Start">Start</string>
+    <string name="Cancel">Cancel</string>
+    <string name="basic_training_protocol">Basic Training Protocol</string>
+    <string name="start_on_high_altitudeuntil_warmed_up_o2_sat_usually_drops_to_81">Start on high \n altitude \n untilsat usuallyd \n rops to 81%.</string>
+    <string name="time">Time</string>
+    <string name="level_until_you_have_been_fully_recovered_for_2_mins_o2_sat_climbs_to_99">level until \n you  have been \n fully recovered \n for 2 mins. O2 sat\n  climbs to 99%.</string>
+    <string name="increase_pace_to_sprint_and_switch_to_high_altitude_2_maintain_for_15_seconds">Increase pace \n to sprint and switch \n to high altitude,\n 2. Maintain for \n 15 seconds.</string>
+    <string name="maintain_pace_at_a_comfortable_level_o2_sat_climbs_to_99">Maintain pace at \n a comfortable level \n O2 sat climbs to 99%.</string>
+    <string name="typical_time">Typical Time</string>
+   <string name="method">Method</string>
+   <string name="altitude">Altitude</string>
+   <string name="phase">Phase</string>
+   <string name="notes_amp_mechanism"><![CDATA[Notes&Mechanism]]></string>
+    <string name="_3_9_mins">3-9 Mins</string>
+    <string name="exercise_for_6_mins_at_a_comfortable_pace_till_you_reach_your_target_pulse_rate">Exercise for\n 6 Mins at a \n comfortable pace \n till you reach \n your Target \n Pulse Rate.</string>
+    <string name="start_on_high_altitude_and_exercise_at_a_moderate_pace">Start on high \n altitude and \n exerciseat a \n moderate pace.</string>
+    <string name="exercise_for_8_mins_at_a_comfortable_pace_till_you_reach_your_target_pulse_rate">Exercise for 8 \n Mins at a \n comfortabla pace \n till you \n reach your \n Target\n Pulse Rate.</string>
+</resources>
+
+
+
