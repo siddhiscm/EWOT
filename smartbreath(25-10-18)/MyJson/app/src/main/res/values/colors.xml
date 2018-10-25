@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FDA50F</color>
+    <color name="colorPrimaryDark">#dc5d01</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white_color">#FFFFFF</color>
+    <color name="app_black">#FDA50F</color>
+    <color name="greyColor">#FF8C00</color>
+    <color name="grey">#808080</color>
+
+</resources>
