@@ -1,2 +1,0 @@
-# EWOT
-EWOT andriod Code

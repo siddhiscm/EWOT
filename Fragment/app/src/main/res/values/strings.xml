@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Fragment</string>
-    <string name="home">home</string>
-    <string name="gallery">Gallery</string>
-    <string name="contactus">ContactUs</string>
-    <string name="welcome_to_vo2_max">welcome to vo2 max</string>
-    <string name="copy_right_to_vo2_max">copy right to VO2 MAX</string>
-</resources>
-

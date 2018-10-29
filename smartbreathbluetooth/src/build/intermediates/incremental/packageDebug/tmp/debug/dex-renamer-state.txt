@@ -1,4 +1,0 @@
-#Fri Oct 12 19:49:33 IST 2018
-base.0=C\:\\Users\\siddhiworld\\AndroidStudioProjects\\smartbreath_Android_1.1.1.68_Source_Code\\src\\build\\intermediates\\transforms\\dexMerger\\debug\\0
-path.0=classes.dex
-renamed.0=classes.dex
