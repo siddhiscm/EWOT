@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:id="@+id/scrollView1"
+    android:background="@color/colorPrimary">
+
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textAlignment="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="40dp"
+                android:textColor="@color/white_color"
+                android:text="@string/basic_training_protocol"
+                android:textStyle="bold">
+
+            </TextView>
+        </TableRow>
+
+        <TableRow
+
+            android:id="@+id/tableRow4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:textAlignment="gravity">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/cell_shape"
+                android:textColor="@color/white_color"
+                android:paddingLeft="50dp"
+                android:text="@string/phase"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/cell_shape"
+                android:textColor="@color/white_color"
+                android:paddingLeft="10dp"
+                android:text="@string/altitude"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/cell_shape"
+                android:paddingLeft="15dp"
+                android:textColor="@color/white_color"
+                android:text="@string/method"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingRight="70sp"
+                android:text="@string/time"
+                android:background="@drawable/cell_shape"
+                android:textColor="@color/white_color"
+                android:textAlignment="center"
+                android:textStyle="bold">
+
+            </TextView>
+
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:background="@drawable/cell_shape"
+            android:textAlignment="center">
+
+            <TextView
+                android:layout_width="94dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="70dp"
+                android:textColor="@color/white_color"
+                android:text="Warm Up"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white_color"
+                android:paddingLeft="10dp"
+                android:text="-O2"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:textColor="@color/white_color"
+                android:text="@string/start_on_high_altitudeuntil_warmed_up_o2_sat_usually_drops_to_81"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingRight="70sp"
+                android:textColor="@color/white_color"
+                android:text="5 Mins"
+                android:textStyle="bold">
+
+            </TextView>
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:textAlignment="center">
+
+            <TextView
+                android:layout_width="94dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white_color"
+                android:paddingLeft="70sp"
+                android:text="Oxygen Wash"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white_color"
+                android:paddingLeft="10dp"
+                android:text="+O2"
+                android:textStyle="bold">
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:textColor="@color/white_color"
+                android:text="@string/level_until_you_have_been_fully_recovered_for_2_mins_o2_sat_climbs_to_99"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingRight="70sp"
+                android:textColor="@color/white_color"
+                android:text="4 Mins"
+                android:textStyle="bold">
+
+            </TextView>
+
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:background="@drawable/cell_shape"
+            android:textAlignment="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white_color"
+                android:paddingLeft="75dp"
+                android:text="HGH/Sprint"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white_color"
+                android:paddingLeft="10dp"
+                android:text="-O2&amp;+O2"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:textColor="@color/white_color"
+                android:text="@string/increase_pace_to_sprint_and_switch_to_high_altitude_2_maintain_for_15_seconds"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingRight="70sp"
+                android:text="3-9 Mins"
+                android:textColor="@color/white_color"
+                android:textAlignment="center"
+                android:textStyle="bold">
+            </TextView>
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:background="@drawable/cell_shape"
+            android:textAlignment="center">
+
+            <TextView
+                android:layout_width="94dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white_color"
+                android:paddingLeft="70dp"
+                android:text="Cool Down"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white_color"
+                android:paddingLeft="10dp"
+                android:text="+O2"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:textColor="@color/white_color"
+                android:text="@string/maintain_pace_at_a_comfortable_level_o2_sat_climbs_to_99"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingRight="70sp"
+                android:textColor="@color/white_color"
+                android:text="3 Mins"
+                android:textStyle="bold">
+
+            </TextView>
+        </TableRow>
+    </TableLayout>
+</ScrollView>
