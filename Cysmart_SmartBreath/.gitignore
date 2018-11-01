@@ -6,3 +6,7 @@ local.properties
 
 # Gradle generated files
 /*/gradle/
+
+# Gradle generated files
+/*/gradlew
+/*/gradlew.bat
