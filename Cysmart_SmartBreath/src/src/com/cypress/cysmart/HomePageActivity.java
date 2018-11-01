@@ -120,8 +120,7 @@ public class HomePageActivity extends FragmentActivity implements
     public static FrameLayout mContainerView;
     public static Boolean mApplicationInBackground = false;
 
-    String[] descriptionData = {"WarmUp","CoolDown","Oxygen","Sprint","EPO","HGS"};
-    StateProgressBar stateProgressBar;
+
 
 
     SampleActivity smartBreath;
@@ -290,6 +289,7 @@ public class HomePageActivity extends FragmentActivity implements
 
 
         if (isTablet(this)) {
+
             Logger.d("Tablet");
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         } else {
@@ -300,7 +300,8 @@ public class HomePageActivity extends FragmentActivity implements
         setContentView(R.layout.activity_main);
 
         Button clickButton = (Button) findViewById(R.id.button);
-        clickButton.setOnClickListener( new View.OnClickListener() {
+        clickButton.setOnClickListener( new View.OnClickListener()
+        {
 
             @Override
             public void onClick(View v) {
@@ -314,13 +315,6 @@ public class HomePageActivity extends FragmentActivity implements
 
             }
         });
-
-        stateProgressBar = findViewById(R.id.your_state_progress_bar_id);
-        stateProgressBar.setStateDescriptionData(descriptionData);
-        stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.SIX);
-
-        stateProgressBar.setVisibility(View.VISIBLE);
-
 
         Paired = getResources().getString(R.string.bluetooth_pair);
         Unpaired = getResources().getString(R.string.bluetooth_unpair);
