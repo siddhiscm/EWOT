@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -41,7 +42,7 @@ public class SampleActivity extends AppCompatActivity {
     TextView tvDashboard, tvProtocal, tvAboutUs;
     RelativeLayout rStartStop;
 
-    private static final long START_TIME_IN_MILLIS =5000;//5 minutes
+    private static final long START_TIME_IN_MILLIS =10100;//10 sec
     private TextView mTextViewCountDown;
     private Button mButtonStartPause;
     private Button mButtoncancel;
@@ -51,13 +52,15 @@ public class SampleActivity extends AppCompatActivity {
     private  long TIME=mTimeLeftInMillis;
     //  private long mTimeLeftInMillis1=mTimeLeftInMillis;
     ProgressBar mProgressBar = null;
-    private int mMaxStateNumber=6;
-    String[] descriptionData = {"   Warm Up","EPO","Oxygen\r\nWash","HGS \r\nSprint","Cool Down","HGS"};
+    private int mMaxStateNumber=5;
+    String[] descriptionData = {"Prep\r\nTime", "Warm\r\nUp","EPO","Oxygen\r\nWash","Cool\r\nDown"};
     StateProgressBar stateProgressBar;
     PageIndicatorView pageIndicatorView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
 
         setContentView(R.layout.activity_main_sb);
         initialize();
@@ -81,8 +84,8 @@ public class SampleActivity extends AppCompatActivity {
                 setProgressBarValues();
                 startTimer(mTimeLeftInMillis);
                 //pageIndicatorView.setVisibility(View.INVISIBLE);
-                 pageIndicatorView=(PageIndicatorView)findViewById(R.id.pageIndicatorView);
-                 pageIndicatorView.setVisibility(View.GONE);
+                pageIndicatorView=(PageIndicatorView)findViewById(R.id.pageIndicatorView);
+                pageIndicatorView.setVisibility(View.GONE);
 
 
 
@@ -171,7 +174,6 @@ public class SampleActivity extends AppCompatActivity {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText(startTimeInMillis);
             }
-
             @Override
             public void onFinish() {
                 mTimerRunning = true;
@@ -220,31 +222,27 @@ public class SampleActivity extends AppCompatActivity {
         switch (stateProgressBar.getCurrentStateNumber()) {
             case 1:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
-                mTimeLeftInMillis=5000;//1 minutes
+                mTimeLeftInMillis=30100;//30 sec
                 stages();
 
                 break;
             case 2:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
-                mTimeLeftInMillis=5000;//4 minutes
+                mTimeLeftInMillis=30100;//30 sec
                 stages();
                 break;
             case 3:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
-                mTimeLeftInMillis=5000; //4 minutes
+                mTimeLeftInMillis=30100;//30 sec
                 stages();
                 break;
             case 4:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
-                mTimeLeftInMillis=4000; //3 minutes
+                mTimeLeftInMillis=30100;//30 sec
                 stages();
                 break;
+
             case 5:
-                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.SIX);
-                mTimeLeftInMillis=3000;  //3 minutes
-                stages();
-                break;
-            case 6:
                 stateProgressBar.setAllStatesCompleted(true);
                 stateProgressBar.setVisibility(View.GONE);
                 mButtonStartPause.setVisibility(View.GONE);
@@ -326,7 +324,7 @@ public class SampleActivity extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
         stateProgressBar = findViewById(R.id.your_state_progress_bar_id);
         stateProgressBar.setStateDescriptionData(descriptionData);
-        stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.SIX);
+        stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.FIVE);
     }
     public void replacefragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -361,7 +359,7 @@ public class SampleActivity extends AppCompatActivity {
                     tvProtocal.setBackgroundColor(getResources().getColor(R.color.button_enable));
                     tvAboutUs.setBackgroundColor(getResources().getColor(R.color.button_enable));
                     mButtonStartPause.setBackgroundColor(getResources().getColor(R.color.button_enable));
-                   // PageIndicatorView pageIndicatorView=(PageIndicatorView)findViewById(R.id.pageIndicatorView);
+                    // PageIndicatorView pageIndicatorView=(PageIndicatorView)findViewById(R.id.pageIndicatorView);
                     //pageIndicatorView.setVisibility(View.GONE);
                     alert_Terminated();
                     mButtonStartPause.setVisibility(View.GONE);
