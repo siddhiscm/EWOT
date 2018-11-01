@@ -10,3 +10,8 @@ local.properties
 # Gradle generated files
 /*/gradlew
 /*/gradlew.bat
+/*/.idea/caches
+/*/.idea/gradle.xml
+/*/.idea/runConfigurations.xml
+
+

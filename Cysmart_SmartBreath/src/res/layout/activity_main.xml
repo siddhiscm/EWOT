@@ -59,8 +59,6 @@
         android:gravity="center"
         android:layout_centerInParent="true"
         android:text="Button" />
-
-
     <com.kofigyan.stateprogressbar.StateProgressBar
         android:id="@+id/your_state_progress_bar_id"
         android:layout_width="wrap_content"
