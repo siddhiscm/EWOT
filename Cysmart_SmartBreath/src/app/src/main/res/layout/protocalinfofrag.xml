@@ -30,7 +30,7 @@
                 android:gravity="center"
                 android:paddingTop="40dp"
                 android:textColor="@color/text_color"
-                android:text="@string/basic_training_protocol"
+                android:text="Advance Protocol Info"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
 
@@ -47,14 +47,14 @@
             android:textAlignment="gravity">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:background="@drawable/cell_shape"
-                android:textColor="@color/text_color"
+                android:fontFamily="@font/times_new_roman"
+                android:gravity="center"
                 android:paddingLeft="50dp"
                 android:text="@string/phase"
-                android:fontFamily="@font/times_new_roman"
+                android:textColor="@color/text_color"
                 android:textStyle="bold">
 
             </TextView>
@@ -100,6 +100,62 @@
             </TextView>
 
 
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:background="@drawable/cell_shape"
+            android:textAlignment="center">
+
+            <TextView
+                android:layout_width="94dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="70dp"
+                android:textColor="@color/text_color"
+                android:text="Prep Time"
+                android:fontFamily="@font/times_new_roman"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/text_color"
+                android:paddingLeft="10dp"
+                android:text="--"
+                android:fontFamily="@font/times_new_roman"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:textColor="@color/text_color"
+                android:text="--"
+                android:textStyle="bold"
+                android:fontFamily="@font/times_new_roman">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingRight="70sp"
+                android:textColor="@color/text_color"
+                android:text="10 Secs"
+                android:fontFamily="@font/times_new_roman"
+                android:textStyle="bold">
+
+            </TextView>
         </TableRow>
         <TableRow
             android:layout_width="fill_parent"
