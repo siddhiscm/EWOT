@@ -164,7 +164,7 @@ public class HomePageActivity extends FragmentActivity implements
      * Fragment managing the behaviors, interactions and presentation of the
      * navigation drawer.
      */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
+   // private NavigationDrawerFragment mNavigationDrawerFragment;//
     /**
      * Broadcast receiver for getting the bonding information
      */
@@ -306,8 +306,8 @@ public class HomePageActivity extends FragmentActivity implements
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getApplication().getBaseContext(), "This is my Toast message!",
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplication().getBaseContext(), "This is my Toast message!",//
+//                        Toast.LENGTH_LONG).show();//
 
                 Intent i = new Intent(getApplicationContext(),SampleActivity.class);
                 startActivity(i);
@@ -344,12 +344,12 @@ public class HomePageActivity extends FragmentActivity implements
         getTitle();
 
         // Getting the id of the navigation fragment from the attached xml
-        mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.navigation_drawer);
-
-        // Set up the drawer.
-        mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+//        mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.navigation_drawer);
+//
+//        // Set up the drawer.
+//        mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
+//                (DrawerLayout) findViewById(R.id.drawer_layout));
 
         // Set the Clear cahce on disconnect as true by devfault
         if (!Utils.ifContainsSharedPreference(this, Constants.PREF_PAIR_CACHE_STATUS)) {

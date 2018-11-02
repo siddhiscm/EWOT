@@ -32,7 +32,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="navigation_drawer_child_home">Home</string>
+    <string name="navigation_drawer_child_home"> </string>
     <string name="navigation_drawer_child_ble">BLE Products</string>
     <string name="navigation_drawer_child_mobile">CySmart Mobile</string>
     <string name="navigation_drawer_child_contact">Contact Us</string>
@@ -307,9 +307,9 @@
     <string name="glucose_fragment">Glucose</string>
     <string name="gatt_characteristics_heading">Characteristics</string>
     <string name="gatt_descriptors_heading">Descriptors</string>
-    <string name="profile_scan_fragment">BLE Devices</string>
+    <string name="profile_scan_fragment">SmartBreath Devices</string>
     <string name="battery_info_fragment">Battery Service</string>
-    <string name="findme_fragment">Find Me</string>
+    <string name="findme_fragment">Find Me</string>//
     <string name="proximity_fragment">Proximity</string>
     <string name="rsc_fragment">Running Speed and Cadence</string>
     <string name="csc_fragment">Cycling Speed and Cadence</string>

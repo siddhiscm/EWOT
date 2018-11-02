@@ -19,6 +19,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -92,8 +93,10 @@ public class SampleActivity extends AppCompatActivity {
 
 
 
+
             }
         });
+
 
 
 
@@ -215,6 +218,29 @@ public class SampleActivity extends AppCompatActivity {
         mButtonStartPause.setEnabled(false);
         mTextViewCountDown.setVisibility(View.VISIBLE);
     }
+    @Override
+    public void onBackPressed() {
+        AlertDialog alertbox = new AlertDialog.Builder(this)
+                .setMessage("Do you want to exit application?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        mcountDownTimer.cancel();
+
+                        finish();
+                        //close();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    // do something when the button is clicked
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    }
+                })
+                .show();
+
+    }
 
 
     @SuppressLint("WrongConstant")
@@ -224,22 +250,26 @@ public class SampleActivity extends AppCompatActivity {
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
+                tone();
 
                 break;
             case 2:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
+                tone();
                 break;
             case 3:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
+                tone();
                 break;
             case 4:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
+                tone();
                 break;
 
             case 5:
@@ -288,6 +318,12 @@ public class SampleActivity extends AppCompatActivity {
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
+
+
+
+
+
+
     public void vibrator() {
         try {
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -311,6 +347,11 @@ public class SampleActivity extends AppCompatActivity {
             //mStartButtonSetup();
         }
     }
+
+
+
+
+
 
     private void initialize() {
         tvDashboard = findViewById(R.id.txtDashboard);
@@ -370,6 +411,8 @@ public class SampleActivity extends AppCompatActivity {
                     mButtonStartPause.setEnabled(true);
                     mButtonStartPause.setText("Resume");
                     mButtoncancel.setEnabled(false);
+                    vibrator();
+                    tone();
                     mButtoncancel.setBackgroundColor(getResources().getColor(R.color.button_disable));
                     mButtonStartPause.setBackgroundColor(getResources().getColor(R.color.button_enable));
                     mButtonStartPause.setTextColor(getResources().getColor(R.color.background_color));
