@@ -287,6 +287,8 @@ public class SampleActivity extends AppCompatActivity {
                 });
         AlertDialog alert11 = builder1.create();
         alert11.show();
+        vibrator();
+        tone();
     }
     public void vibrator() {
         try {

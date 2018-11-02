@@ -95,7 +95,6 @@ public class DataLoggerListAdapter extends BaseAdapter {
         viewHolder.serviceName.setText(dataLogger.getLogName());
         return view;
     }
-
     /**
      * Holder class for ListView items
      */
@@ -103,5 +102,4 @@ public class DataLoggerListAdapter extends BaseAdapter {
     class ViewHolderclass {
         TextView serviceName;
       }
-
 }
