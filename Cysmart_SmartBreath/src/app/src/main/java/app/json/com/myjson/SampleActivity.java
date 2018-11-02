@@ -52,7 +52,7 @@ public class SampleActivity extends AppCompatActivity {
     private  long TIME=mTimeLeftInMillis;
     //  private long mTimeLeftInMillis1=mTimeLeftInMillis;
     ProgressBar mProgressBar = null;
-    private int mMaxStateNumber=5;
+    private int mMaxStateNumber=4;
     String[] descriptionData = {"Prep\r\nTime", "Warm\r\nUp","EPO","Oxygen\r\nWash","Cool\r\nDown"};
     StateProgressBar stateProgressBar;
     PageIndicatorView pageIndicatorView;
@@ -221,23 +221,23 @@ public class SampleActivity extends AppCompatActivity {
     public void stagesTime(){
         switch (stateProgressBar.getCurrentStateNumber()) {
             case 1:
-                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
 
                 break;
             case 2:
-                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
                 break;
             case 3:
-                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
                 break;
             case 4:
-                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
                 break;
@@ -307,7 +307,7 @@ public class SampleActivity extends AppCompatActivity {
 
         if(stateProgressBar.getCurrentStateNumber()>=mMaxStateNumber){
             stateProgressBar.setAllStatesCompleted(Boolean.FALSE);
-            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
+            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ZERO);
             //mStartButtonSetup();
         }
     }
@@ -324,7 +324,7 @@ public class SampleActivity extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
         stateProgressBar = findViewById(R.id.your_state_progress_bar_id);
         stateProgressBar.setStateDescriptionData(descriptionData);
-        stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.FIVE);
+        stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.FOUR);
     }
     public void replacefragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
