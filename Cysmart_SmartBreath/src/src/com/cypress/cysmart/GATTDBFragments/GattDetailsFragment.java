@@ -32,6 +32,7 @@
 
 package com.cypress.cysmart.GATTDBFragments;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothDevice;
@@ -42,9 +43,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -58,8 +61,10 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.cypress.cysmart.BLEConnectionServices.BluetoothLeService;
@@ -74,7 +79,7 @@ import com.cypress.cysmart.CommonUtils.Utils;
 import com.cypress.cysmart.CySmartApplication;
 import com.cypress.cysmart.R;
 
-public class GattDetailsFragment extends Fragment implements DialogListner, OnClickListener {
+public class GattDetailsFragment extends Fragment implements DialogListner, OnClickListener,CompoundButton.OnCheckedChangeListener {
 
     // Indicate/Notify/Read Flag
     public static boolean mIsNotifyEnabled;
@@ -91,6 +96,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
     private TextView mHexValue;
     private EditText mAsciivalue;
     private TextView mDatevalue;
+    private Switch mSwitch;
     private TextView mTimevalue;
     private TextView mBtnread;
     private TextView mBtnwrite;
@@ -135,6 +141,30 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
         mAsciivalue = (EditText) rootView.findViewById(R.id.txtascii);
         mTimevalue = (TextView) rootView.findViewById(R.id.txttime);
         mDatevalue = (TextView) rootView.findViewById(R.id.txtdate);
+        mSwitch =(Switch) rootView.findViewById(R.id.myswitch);
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    String result;
+                    result="0x01 0x00 0x00 0x00";
+                    byte[] convertedBytes = Utils.convertingTobyteArray(result);
+                    writeCharaValue(convertedBytes);
+                    mSwitch.setText("o2+");
+                    mSwitch.setTextColor(getResources().getColor(R.color.green));
+                    Log.d("switch","enablead");
+                }else {
+                    String result;
+                    result="0x00 0x01 0x00 0x00";
+                    byte[] convertedBytes = Utils.convertingTobyteArray(result);
+                    writeCharaValue(convertedBytes);
+                    mSwitch.setText("o2-");
+                    mSwitch.setTextColor(getResources().getColor(R.color.red));
+                    Log.d("switch","disable");
+                }
+
+            }
+        });
         mBackbtn = (ImageView) rootView.findViewById(R.id.imgback);
         mProgressDialog = new ProgressDialog(getActivity());
         mBtnDescriptor = (Button) rootView.findViewById(R.id.characteristic_descriptors);
@@ -154,7 +184,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
          * Checking descriptors available in the current characteristic
          */
 
-       if (mApplication.getBluetoothgattcharacteristic().getDescriptors().size() == 0) {
+        if (mApplication.getBluetoothgattcharacteristic().getDescriptors().size() == 0) {
             mBtnDescriptor.setVisibility(View.GONE);
         }
         /**
@@ -191,6 +221,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
         mBtnwrite.setOnClickListener(this);
         mHexValue.setOnClickListener(this);
         mAsciivalue.setOnClickListener(this);
+        //mSwitch.setOnCheckedChangeListener(this);
         mAsciivalue.setEnabled(false);
         mHexValue.setEnabled(false);
         /**
@@ -208,7 +239,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
                     displayHexValue(convertedBytes);
                     writeCharaValue(convertedBytes);
                     hideAsciiKeyboard();
-                 return true;
+                    return true;
                 }
                 return false;
             }
@@ -245,8 +276,10 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
         mStopNotifyText = getResources().getString(R.string.gatt_services_stop_notify);
         mStartIndicateText = getResources().getString(R.string.gatt_services_indicate);
         mStopIndicateText = getResources().getString(R.string.gatt_services_stop_indicate);
+
         //Check the available properties in the characteristics and provide corresponding buttons
         UIbuttonvisibility();
+
         /**
          * Check for HID Service
          */
@@ -318,7 +351,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
                 mReadCharacteristic.getProperties(),
                 BluetoothGattCharacteristic.PROPERTY_READ)) {
             // Read property available
-            mBtnread.setVisibility(View.VISIBLE);
+            mBtnread.setVisibility(View.GONE);
         }
         // Check write supported on the Charatceristic
         if (getGattCharacteristicsPropertices(
@@ -328,7 +361,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
                 mReadCharacteristic.getProperties(),
                 BluetoothGattCharacteristic.PROPERTY_WRITE_NO_RESPONSE)) {
             // Write property available
-            mBtnwrite.setVisibility(View.VISIBLE);
+            mBtnwrite.setVisibility(View.GONE);
             mAsciivalue.setEnabled(true);
             mHexValue.setEnabled(true);
         }
@@ -337,7 +370,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
                 mReadCharacteristic.getProperties(),
                 BluetoothGattCharacteristic.PROPERTY_NOTIFY)) {
             // Notify property available
-             mBtnnotify.setVisibility(View.VISIBLE);
+            mBtnnotify.setVisibility(View.GONE);
             BluetoothGattDescriptor descriptor = mReadCharacteristic.
                     getDescriptor(UUIDDatabase.UUID_CLIENT_CHARACTERISTIC_CONFIG);
             if (descriptor != null) {
@@ -349,7 +382,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
                 mReadCharacteristic.getProperties(),
                 BluetoothGattCharacteristic.PROPERTY_INDICATE)) {
             // Indicate property available
-            mBtnIndicate.setVisibility(View.VISIBLE);
+            mBtnIndicate.setVisibility(View.GONE);
             BluetoothGattDescriptor descriptor = mReadCharacteristic.
                     getDescriptor(UUIDDatabase.UUID_CLIENT_CHARACTERISTIC_CONFIG);
             if (descriptor != null) {
@@ -436,7 +469,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
      */
     void displayASCIIValue(String hexValue) {
         mAsciivalue.setText("");
-      StringBuilder output = new StringBuilder("");
+        StringBuilder output = new StringBuilder("");
         try {
             for (int i = 0; i < hexValue.length(); i += 2) {
                 String str = hexValue.substring(i, i + 2);
@@ -466,7 +499,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
      */
     private void displayTimeandDate() {
 
-        mTimevalue.setText(Utils.GetTimeFromMilliseconds());
+//        mTimevalue.setText(Utils.GetTimeFromMilliseconds());
         mDatevalue.setText(Utils.GetDateFromMilliseconds());
     }
 
@@ -475,7 +508,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
      */
     private void clearall() {
         Logger.e("Cleared");
-        mTimevalue.setText("");
+//        mTimevalue.setText("");
         mDatevalue.setText("");
         mAsciivalue.setText("");
         mHexValue.setText("");
@@ -497,6 +530,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
 
     @Override
     public void onClick(View v) {
+        Log.d("switch", String.valueOf(v.getId()));
         switch (v.getId()) {
             case R.id.txtwrite:
                 clearall();
@@ -504,6 +538,9 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
                 hexKeyBoard.setDialogListner(this);
                 hexKeyBoard.show();
                 mAsciivalue.clearFocus();
+                break;
+            case R.id.myswitch:
+                Log.d("Switch1","clicking switch");
                 break;
             case R.id.txthex:
                 clearall();
@@ -569,6 +606,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
 
     @Override
     public void dialog0kPressed(String result) {
+        Log.d("result_value",result);
         byte[] convertedBytes = Utils.convertingTobyteArray(result);
         // Displaying the hex and ASCII values
         displayHexValue(convertedBytes);
@@ -581,7 +619,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
      * @param value
      */
     private void writeCharaValue(byte[] value) {
-        displayTimeandDate();
+//        displayTimeandDate();
         // Writing the hexValue to the characteristic
         try {
             BluetoothLeService.writeCharacteristicGattDb(mReadCharacteristic,
@@ -707,8 +745,8 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
             if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
                 // Data Received
                 if (extras.containsKey(Constants.EXTRA_BYTE_VALUE)) {
-                   BluetoothGattCharacteristic requiredCharacteristic =
-                                mApplication.getBluetoothgattcharacteristic();
+                    BluetoothGattCharacteristic requiredCharacteristic =
+                            mApplication.getBluetoothgattcharacteristic();
                     String uuidRequired = requiredCharacteristic.getUuid().toString();
                     String receivedUUID = "";
                     String requiredServiceUUID = requiredCharacteristic.
@@ -728,11 +766,11 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
                                         EXTRA_BYTE_INSTANCE_VALUE,
                                 -1);
                     }if(extras.containsKey(Constants.
-                                                EXTRA_BYTE_SERVICE_UUID_VALUE)) {
+                            EXTRA_BYTE_SERVICE_UUID_VALUE)) {
                         receivedServiceUUID = intent.getStringExtra(
                                 Constants.EXTRA_BYTE_SERVICE_UUID_VALUE);
                     }if(extras.containsKey(Constants.
-                                                        EXTRA_BYTE_SERVICE_INSTANCE_VALUE)) {
+                            EXTRA_BYTE_SERVICE_INSTANCE_VALUE)) {
                         receivedServiceInstanceID  =
                                 intent.getIntExtra(Constants.EXTRA_BYTE_SERVICE_INSTANCE_VALUE,
                                         -1);
@@ -745,12 +783,12 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
                         byte[] array = intent
                                 .getByteArrayExtra(Constants.
                                         EXTRA_BYTE_VALUE);
-                         displayHexValue(array);
-                         displayASCIIValue(mHexValue.getText().
+                        displayHexValue(array);
+                        displayASCIIValue(mHexValue.getText().
                                 toString());
-                         displayTimeandDate();
-                         }
-                     }
+                        displayTimeandDate();
+                    }
+                }
                 if (extras.containsKey(Constants.EXTRA_DESCRIPTOR_BYTE_VALUE)) {
                     if (extras.containsKey(Constants.
                             EXTRA_DESCRIPTOR_BYTE_VALUE_CHARACTERISTIC_UUID)) {
@@ -784,7 +822,7 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
 
                     }
                 }
-                }
+            }
             if (action.equals(BluetoothLeService.ACTION_GATT_CHARACTERISTIC_ERROR)) {
                 if (extras.containsKey(Constants.EXTRA_CHARACTERISTIC_ERROR_MESSAGE)) {
                     String errorMessage = extras.
@@ -834,4 +872,15 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
         }
 
     };
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+        if (isChecked) {
+            mSwitch.setText("o2+");
+            // do something when check is selected
+        } else {
+            mSwitch.setText("02-");
+        }
+
+    }
 }

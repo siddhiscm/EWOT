@@ -250,26 +250,21 @@ public class SampleActivity extends AppCompatActivity {
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
-                tone();
-
                 break;
             case 2:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
-                tone();
                 break;
             case 3:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
-                tone();
                 break;
             case 4:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
-                tone();
                 break;
 
             case 5:
@@ -320,12 +315,6 @@ public class SampleActivity extends AppCompatActivity {
         vibrator();
         tone();
     }
-
-
-
-
-
-
     public void vibrator() {
         try {
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);

@@ -2,6 +2,7 @@
 <resources>
 
     <color name="main_bg_color">#0c377b</color>
+    <color name="red">	#FF0000</color>
 
 
     <color name="list_item_title_notactivated">#000</color>
