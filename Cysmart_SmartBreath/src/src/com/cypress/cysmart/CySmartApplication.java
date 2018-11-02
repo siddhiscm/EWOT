@@ -102,7 +102,6 @@ public class CySmartApplication extends Application {
     public List<BluetoothGattCharacteristic> getGattCharacteristics() {
         return mGattCharacteristics;
     }
-
     /**
      * setter method for blue tooth GATT Characteristic list
      *
