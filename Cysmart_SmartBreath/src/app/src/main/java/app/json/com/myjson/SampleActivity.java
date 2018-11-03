@@ -285,8 +285,6 @@ public class SampleActivity extends AppCompatActivity {
                 });
         AlertDialog alert11 = builder1.create();
         alert11.show();
-        vibrator();
-        tone();
     }
     public void vibrator() {
         try {
@@ -408,6 +406,8 @@ public class SampleActivity extends AppCompatActivity {
                     mButtonStartPause.setEnabled(true);
                     mButtonStartPause.setText("Resume");
                     mButtoncancel.setEnabled(false);
+                    vibrator();
+                    tone();
                     mButtoncancel.setBackgroundColor(getResources().getColor(R.color.button_disable));
                     mButtonStartPause.setBackgroundColor(getResources().getColor(R.color.button_enable));
                     mButtonStartPause.setTextColor(getResources().getColor(R.color.background_color));
