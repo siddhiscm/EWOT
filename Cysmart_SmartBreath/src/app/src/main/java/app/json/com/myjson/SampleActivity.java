@@ -52,7 +52,7 @@ public class SampleActivity extends AppCompatActivity {
     private  long TIME=mTimeLeftInMillis;
     //  private long mTimeLeftInMillis1=mTimeLeftInMillis;
     ProgressBar mProgressBar = null;
-    private int mMaxStateNumber=4;
+    private int mMaxStateNumber=5;
     String[] descriptionData = {"Prep\r\nTime", "Warm\r\nUp","EPO","Oxygen\r\nWash","Cool\r\nDown"};
     StateProgressBar stateProgressBar;
     PageIndicatorView pageIndicatorView;
@@ -187,11 +187,10 @@ public class SampleActivity extends AppCompatActivity {
             }
         }.start();
 
-
-
-
-
     }
+
+
+
     private void updateCountDownText(long time) {
         int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
@@ -221,26 +220,22 @@ public class SampleActivity extends AppCompatActivity {
     public void stagesTime(){
         switch (stateProgressBar.getCurrentStateNumber()) {
             case 1:
-                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
-                mTimeLeftInMillis=30100;//30 sec
-                stages();
-<<<<<<< HEAD
-=======
-
->>>>>>> ae93fec9cd92b766023601569165c9898c435655
-                break;
-            case 2:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
                 break;
-            case 3:
+            case 2:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
                 break;
-            case 4:
+            case 3:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                mTimeLeftInMillis=30100;//30 sec
+                stages();
+                break;
+            case 4:
+                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
                 break;
@@ -307,15 +302,53 @@ public class SampleActivity extends AppCompatActivity {
         toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP,200);
 
     }
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage("Do you want to Exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //if user pressed "yes", then he is allowed to exit from application
+                finish();
+                mcountDownTimer.cancel();
+            }
+        });
+        builder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //if user select "No", just cancel this dialog and continue with app
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert=builder.create();
+        alert.show();
+    }
+
+
+
+
+
 
     public void resetState(){
 
         if(stateProgressBar.getCurrentStateNumber()>=mMaxStateNumber){
             stateProgressBar.setAllStatesCompleted(Boolean.FALSE);
-            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ZERO);
+            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE);
             //mStartButtonSetup();
         }
+
+
+
+
+
+
+
     }
+
+
+
 
     private void initialize() {
         tvDashboard = findViewById(R.id.txtDashboard);
@@ -329,7 +362,7 @@ public class SampleActivity extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
         stateProgressBar = findViewById(R.id.your_state_progress_bar_id);
         stateProgressBar.setStateDescriptionData(descriptionData);
-        stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.FOUR);
+        stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.FIVE);
     }
     public void replacefragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();

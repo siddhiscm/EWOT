@@ -30,7 +30,7 @@
                 android:gravity="center"
                 android:paddingTop="40dp"
                 android:textColor="@color/text_color"
-                android:text="Advance Protocol Info"
+                android:text="Basic Training Protocol Info"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
 
@@ -62,11 +62,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:background="@drawable/cell_shape"
                 android:textColor="@color/text_color"
                 android:paddingLeft="10dp"
                 android:text="@string/altitude"
+                android:gravity="center"
+                android:paddingRight="10dp"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
 
@@ -79,7 +80,7 @@
                 android:background="@drawable/cell_shape"
                 android:paddingLeft="15dp"
                 android:textColor="@color/text_color"
-                android:text="@string/method"
+                android:text="Activity"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
 
@@ -128,6 +129,7 @@
                 android:textColor="@color/text_color"
                 android:paddingLeft="10dp"
                 android:text="--"
+                android:paddingRight="10dp"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
 
@@ -183,6 +185,7 @@
                 android:gravity="center"
                 android:textColor="@color/text_color"
                 android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:text="-O2"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
@@ -195,7 +198,7 @@
                 android:gravity="center"
                 android:paddingLeft="15dp"
                 android:textColor="@color/text_color"
-                android:text="@string/start_on_high_altitudeuntil_warmed_up_o2_sat_usually_drops_to_81"
+                android:text="@string/warm_des"
                 android:textStyle="bold"
                 android:fontFamily="@font/times_new_roman">
 
@@ -207,7 +210,7 @@
                 android:gravity="left"
                 android:paddingRight="70sp"
                 android:textColor="@color/text_color"
-                android:text="5 Mins"
+                android:text="30 Sec"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
 
@@ -227,7 +230,7 @@
                 android:gravity="center"
                 android:textColor="@color/text_color"
                 android:paddingLeft="70sp"
-                android:text="Oxygen Wash"
+                android:text="EPO"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
 
@@ -239,7 +242,8 @@
                 android:gravity="center"
                 android:textColor="@color/text_color"
                 android:paddingLeft="10dp"
-                android:text="+O2"
+                android:paddingRight="10dp"
+                android:text="-O2"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
 
@@ -250,7 +254,7 @@
                 android:gravity="center"
                 android:paddingLeft="15dp"
                 android:textColor="@color/text_color"
-                android:text="@string/level_until_you_have_been_fully_recovered_for_2_mins_o2_sat_climbs_to_99"
+                android:text="On Spot Running"
                 android:textStyle="bold"
                 android:fontFamily="@font/times_new_roman">
 
@@ -262,7 +266,7 @@
                 android:gravity="left"
                 android:paddingRight="70sp"
                 android:textColor="@color/text_color"
-                android:text="4 Mins"
+                android:text="30 Sec"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
 
@@ -284,7 +288,7 @@
                 android:gravity="center"
                 android:textColor="@color/text_color"
                 android:paddingLeft="75dp"
-                android:text="HGH/Sprint"
+                android:text="Oxygen Wash"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
 
@@ -296,7 +300,8 @@
                 android:gravity="center"
                 android:textColor="@color/text_color"
                 android:paddingLeft="10dp"
-                android:text="-O2&amp;+O2"
+                android:paddingRight="10dp"
+                android:text="+O2"
                 android:textStyle="bold"
                 android:fontFamily="@font/times_new_roman">
 
@@ -308,7 +313,7 @@
                 android:gravity="center"
                 android:paddingLeft="15dp"
                 android:textColor="@color/text_color"
-                android:text="@string/increase_pace_to_sprint_and_switch_to_high_altitude_2_maintain_for_15_seconds"
+                android:text="On Spot Running"
                 android:textStyle="bold"
                 android:fontFamily="@font/times_new_roman">
 
@@ -319,7 +324,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:paddingRight="70sp"
-                android:text="3-9 Mins"
+                android:text="30 Sec"
                 android:textColor="@color/text_color"
                 android:textAlignment="center"
                 android:textStyle="bold"
@@ -352,6 +357,7 @@
                 android:gravity="center"
                 android:textColor="@color/text_color"
                 android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:text="+O2"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="bold">
@@ -365,21 +371,18 @@
                 android:fontFamily="@font/times_new_roman"
                 android:paddingLeft="15dp"
                 android:textColor="@color/text_color"
-                android:text="@string/maintain_pace_at_a_comfortable_level_o2_sat_climbs_to_99"
+                android:text="@string/cool_des"
                 android:textStyle="bold">
-
             </TextView>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:paddingRight="70sp"
                 android:textColor="@color/text_color"
-                android:text="3 Mins"
+                android:text="30 Sec"
                 android:fontFamily="@font/times_new_roman"
                 android:textStyle="normal|bold">
-
             </TextView>
         </TableRow>
     </TableLayout>

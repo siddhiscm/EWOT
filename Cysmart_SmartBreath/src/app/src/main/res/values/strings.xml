@@ -7,7 +7,7 @@
         \n•	Stimulate HGH
         \n•	Stimulate EPO
         \n•	Reduce Inflammation
-        \n\n\t\t\tTotal Duration":" 16 - 22 Mins"</string>
+        \n\nTotal Duration":" 16 - 22 Mins"</string>
     <string name="about">Siddhi World</string>
     <string name="version">Smart Breath Version 1.0 </string>
     <string name="Start">Start</string>
@@ -29,24 +29,24 @@
     <string name="protocol2">\n\n\nThis protocol is designed to maximise your blood oxygen levels in preparation for aerobic athletic performance. It further prepares you by:
         \n • Opening your body’s capillaries for optimal blood delivery to muscles.
         \n •	 Restoring blood flow to muscles likely inhibited by prior training or aerobic performance.
-       \n\n\t\t\t"Total Duration":" 12 - 18 Mins"</string>
+       \n\n"Total Duration":" 12 - 18 Mins"</string>
     <string name="protocol3">\n\n\nUse this protocol after
         your workout or after athletic performance to clear metabolic waste and restore blood flow. This protocol
         usually cuts normal recovery time in half by:\n • Clearing inflammation which hinders recovery. \n
         • Restoring blood flow to traumatized tissues to enable healing.
-        \n\n\t\t\t"Total Duration":" 14 – 20 Mins"</string>
+        \n\n"Total Duration":" 14 – 20 Mins"</string>
     <string name="protocol4">\n\n\nThis protocol presumes
         that you are at altitude and are having altitude related discomfort. Your discomfort likely reflects
         inflammation from hypoxia. Follow the below protocol to reduce the inflammation and ease your discomfort.
-        \n\n\t\t\t"Total Duration":" 18 - 34 Mins"</string>
+        \n\n"Total Duration":" 18 - 34 Mins"</string>
     <string name="protocol5"> \n\n\nIt is important to prepare your body before trying to perform at High Altitudes.
         The following protocol will assist with the preparation by: \n
         • Creating more RBC (Red Blood Cells).\n
-        • Improving lung function. \n\n\t\t\t"Total Duration":" 23 - 29 Mins"</string>
+        • Improving lung function. \n\n"Total Duration":" 23 - 29 Mins"</string>
     <string name="protcol6"> \n\n\nThis protocol is designed to restore oxygen to the head to help resolve inflammation in the brain, eyes and ears.
         Many conditions involve inflammation in these areas, such as: \n \n
         • Tinnitus – inflammation in the auditory processing of the inner ear.
-        \n\n \t\t\t"Total Duration":" 16 - 22 Mins"
+        \n\n "Total Duration":" 16 - 22 Mins"
     </string>
     <string name="welcome_siddhi">Welcome Siddhi!!!</string>
     <string name="you_have_100_mins_of_o2_remaining">You have 100 mins of O2+ remaining</string>
@@ -60,6 +60,8 @@
     <string name="protocol_info">Protocol Info</string>
     <string name="about_us">About Us</string>
     <string name="more_info"><a href=""><![CDATA[More Info >>>]]></a></string>
+    <string name="warm_des">Deep Breathing and \n On Spot Jogging</string>
+    <string name="cool_des">On Spot Jogging and\n Deep Breathing</string>
 </resources>
 
 
