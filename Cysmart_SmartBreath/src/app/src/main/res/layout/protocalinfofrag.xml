@@ -271,8 +271,6 @@
                 android:textStyle="bold">
 
             </TextView>
-
-
         </TableRow>
         <TableRow
             android:layout_width="fill_parent"

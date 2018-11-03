@@ -223,6 +223,10 @@ public class SampleActivity extends AppCompatActivity {
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of af9b6db... adding alert in back  button
                 break;
             case 2:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
@@ -337,6 +341,7 @@ public class SampleActivity extends AppCompatActivity {
             //mStartButtonSetup();
         }
 
+<<<<<<< HEAD
 
 
 
@@ -348,6 +353,8 @@ public class SampleActivity extends AppCompatActivity {
 
 
 
+=======
+>>>>>>> parent of af9b6db... adding alert in back  button
     private void initialize() {
         tvDashboard = findViewById(R.id.txtDashboard);
         tvProtocal = findViewById(R.id.txtProtocalInfo);
@@ -406,8 +413,6 @@ public class SampleActivity extends AppCompatActivity {
                     mButtonStartPause.setEnabled(true);
                     mButtonStartPause.setText("Resume");
                     mButtoncancel.setEnabled(false);
-                    vibrator();
-                    tone();
                     mButtoncancel.setBackgroundColor(getResources().getColor(R.color.button_disable));
                     mButtonStartPause.setBackgroundColor(getResources().getColor(R.color.button_enable));
                     mButtonStartPause.setTextColor(getResources().getColor(R.color.background_color));
