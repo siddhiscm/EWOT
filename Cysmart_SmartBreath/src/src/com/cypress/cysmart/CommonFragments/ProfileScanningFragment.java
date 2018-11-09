@@ -29,7 +29,6 @@
  * 
  * 
  */
-
 package com.cypress.cysmart.CommonFragments;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -65,13 +64,11 @@ import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.cypress.cysmart.BLEConnectionServices.BluetoothLeService;
 import com.cypress.cysmart.CommonUtils.Constants;
 import com.cypress.cysmart.CommonUtils.Logger;
 import com.cypress.cysmart.CommonUtils.Utils;
 import com.cypress.cysmart.R;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
