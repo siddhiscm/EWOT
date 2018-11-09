@@ -59,15 +59,7 @@
         android:gravity="center"
         android:layout_centerInParent="true"
         android:text="Button" />
-<<<<<<< HEAD
 
-=======
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home"
-        android:textSize="20dp"/>
->>>>>>> parent of af9b6db... adding alert in back  button
     <com.kofigyan.stateprogressbar.StateProgressBar
         android:id="@+id/your_state_progress_bar_id"
         android:layout_width="wrap_content"

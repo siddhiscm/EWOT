@@ -111,7 +111,7 @@ public class ProfileScanningFragment extends Fragment {
     private LeDeviceListAdapter mLeDeviceListAdapter;
     private SwipeRefreshLayout mSwipeLayout;
     private Map<String, Integer> mDevRssiValues;
-
+    
     //GUI elements
     private ListView mProfileListView;
     private TextView mRefreshText;
@@ -134,25 +134,43 @@ public class ProfileScanningFragment extends Fragment {
         @Override
         public void onLeScan(final BluetoothDevice device, final int rssi,
                              byte[] scanRecord) {
-            Activity mActivity = getActivity();
-            if (mActivity != null) {
-                mActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!mSearchEnabled) {
-                            mLeDeviceListAdapter.addDevice(device, rssi);
-                            try {
-                                mLeDeviceListAdapter.notifyDataSetChanged();
-                            } catch (Exception e) {
-                                e.printStackTrace();
+
+
+            //String SmartBrethUIID = "00:A0:50";
+            String[] macAddressParts = device.getAddress().split(":");
+            // convert hex string to byte values
+            Integer[] macAddressBytes = new Integer[6];
+           // Logger.d("abc",device.getAddress());
+            for (int i = 0; i < 6; i++) {
+                Integer hex = Integer.parseInt(macAddressParts[i], 16);
+                macAddressBytes[i] = hex;
+                //Logger.d("abc",String.valueOf(macAddressBytes[i]));
+            }
+            if ((macAddressBytes[0] == 0x00) && (macAddressBytes[1] == 0xA0) && (macAddressBytes[2] == 0x50)) {
+                Logger.d("SMARTBREATH DEVICe");
+                Activity mActivity = getActivity();
+                if (mActivity != null) {
+                    mActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!mSearchEnabled) {
+                                mLeDeviceListAdapter.addDevice(device, rssi);
+                                try {
+                                    mLeDeviceListAdapter.notifyDataSetChanged();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                }
+            }else {
+                Logger.d("other device");
+            }
             }
 
-        }
     };
+
 
     /**
      * BroadcastReceiver for receiving the GATT communication status

@@ -223,10 +223,6 @@ public class SampleActivity extends AppCompatActivity {
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                 mTimeLeftInMillis=30100;//30 sec
                 stages();
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of af9b6db... adding alert in back  button
                 break;
             case 2:
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
@@ -289,6 +285,8 @@ public class SampleActivity extends AppCompatActivity {
                 });
         AlertDialog alert11 = builder1.create();
         alert11.show();
+        vibrator();
+        tone();
     }
     public void vibrator() {
         try {
@@ -341,7 +339,6 @@ public class SampleActivity extends AppCompatActivity {
             //mStartButtonSetup();
         }
 
-<<<<<<< HEAD
 
 
 
@@ -353,8 +350,6 @@ public class SampleActivity extends AppCompatActivity {
 
 
 
-=======
->>>>>>> parent of af9b6db... adding alert in back  button
     private void initialize() {
         tvDashboard = findViewById(R.id.txtDashboard);
         tvProtocal = findViewById(R.id.txtProtocalInfo);
