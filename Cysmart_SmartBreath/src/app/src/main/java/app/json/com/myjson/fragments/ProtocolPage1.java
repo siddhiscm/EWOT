@@ -36,11 +36,6 @@ public class ProtocolPage1 extends Fragment {
 //               FragProtocalInfo ProtocolInfo = new FragProtocalInfo();
 //               ft.replace(R.id.txtProtocalInfo, ProtocolInfo);
 //               ft.commit();
-
-                Intent intent=new Intent(getActivity(),FragProtocalInfo.class);
-                startActivity(intent);
-
-//
 //                Fragment fragment= new FragProtocalInfo();
 //              FragmentTransaction transaction = getFragmentManager().beginTransaction();
 //              transaction.replace(R.id.txtProtocalInfo, fragment);

@@ -124,7 +124,6 @@ public class HomePageActivity extends FragmentActivity implements
 
 
     SampleActivity smartBreath;
-
     /**
      * Used to manage connections of the Blue tooth LE Device
      */
@@ -306,8 +305,8 @@ public class HomePageActivity extends FragmentActivity implements
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getApplication().getBaseContext(), "This is my Toast message!",
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplication().getBaseContext(), "This is my Toast message!",
+//                        Toast.LENGTH_LONG).show();
 
                 Intent i = new Intent(getApplicationContext(),SampleActivity.class);
                 startActivity(i);

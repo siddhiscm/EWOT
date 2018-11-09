@@ -31,7 +31,6 @@
  */
 
 package com.cypress.cysmart.CommonFragments;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -130,12 +129,9 @@ public class ProfileScanningFragment extends Fragment {
      * This call back is called when a BLE device is found near by.
      */
     private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
-
         @Override
         public void onLeScan(final BluetoothDevice device, final int rssi,
                              byte[] scanRecord) {
-
-
             //String SmartBrethUIID = "00:A0:50";
             String[] macAddressParts = device.getAddress().split(":");
             // convert hex string to byte values
@@ -165,10 +161,9 @@ public class ProfileScanningFragment extends Fragment {
                     });
                 }
             }else {
-                Logger.d("other device");
+                Logger.d("Other Device");
             }
             }
-
     };
 
 
