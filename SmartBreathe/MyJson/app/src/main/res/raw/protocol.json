@@ -1,0 +1,54 @@
+{
+  "protocol": {
+    "name":"protocol name",
+    "description":"protocol name",
+    "totalDuration":"protocol name",
+    "numberofStages":"protocol name",
+    "suitablePersonality" : "Aged above 60, Athelets, etc..",
+    "stages": [
+      {
+        "name1": "warm up",
+        "positiveO2": "10",
+        "negativeO2": "0",
+        "altitude":"",
+        "method":"",
+        "description":""
+      },{
+        "name1": "cool down",
+        "positiveO2": "10",
+        "negativeO2": "2",
+        "altitude":"",
+        "method":"",
+        "description":""
+      },{
+        "name1": "sprint",
+        "positiveO2": "10",
+        "negativeO2": "1",
+        "altitude":"",
+        "method":"",
+        "description":""
+      },{
+        "name1": "oxygen detox",
+        "positiveO2": "10",
+        "negativeO2": "0",
+        "altitude":"",
+        "method":"",
+        "description":""
+      },{
+        "name1": "EPO",
+        "positiveO2": "10",
+        "negativeO2": "0",
+        "altitude":"",
+        "method":"",
+        "description":""
+      },{
+        "name1": "HGH/Oxygen wash",
+        "positiveO2": "10",
+        "negativeO2": "0",
+        "altitude":"",
+        "method":"",
+        "description":""
+      }
+    ]
+  }
+}

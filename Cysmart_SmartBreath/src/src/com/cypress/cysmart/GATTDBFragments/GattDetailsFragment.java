@@ -31,7 +31,6 @@
  */
 
 package com.cypress.cysmart.GATTDBFragments;
-
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

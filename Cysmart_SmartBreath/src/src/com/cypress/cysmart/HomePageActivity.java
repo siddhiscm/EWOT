@@ -66,7 +66,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
-
 import com.cypress.cysmart.BLEConnectionServices.BluetoothLeService;
 import com.cypress.cysmart.BLEServiceFragments.BatteryInformationService;
 import com.cypress.cysmart.BLEServiceFragments.BloodPressureService;
@@ -102,12 +101,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
-
 import app.json.com.myjson.SampleActivity;
-
-
 import com.kofigyan.stateprogressbar.StateProgressBar;
-
 /**
  * Base activity to hold all fragments
  */
@@ -124,6 +119,7 @@ public class HomePageActivity extends FragmentActivity implements
 
 
     SampleActivity smartBreath;
+
     /**
      * Used to manage connections of the Blue tooth LE Device
      */
@@ -168,7 +164,6 @@ public class HomePageActivity extends FragmentActivity implements
      * Broadcast receiver for getting the bonding information
      */
     private BroadcastReceiver mBondStateReceiver = new BroadcastReceiver() {
-
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
@@ -305,8 +300,8 @@ public class HomePageActivity extends FragmentActivity implements
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-//                Toast.makeText(getApplication().getBaseContext(), "This is my Toast message!",
-//                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplication().getBaseContext(), "This is my Toast message!",
+                        Toast.LENGTH_LONG).show();
 
                 Intent i = new Intent(getApplicationContext(),SampleActivity.class);
                 startActivity(i);
@@ -343,12 +338,12 @@ public class HomePageActivity extends FragmentActivity implements
         getTitle();
 
         // Getting the id of the navigation fragment from the attached xml
-//        mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.navigation_drawer);
-//
-//        // Set up the drawer.
-//        mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
-//                (DrawerLayout) findViewById(R.id.drawer_layout));
+        mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.navigation_drawer);
+
+        // Set up the drawer.
+        mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
+                (DrawerLayout) findViewById(R.id.drawer_layout));
 
         // Set the Clear cahce on disconnect as true by devfault
         if (!Utils.ifContainsSharedPreference(this, Constants.PREF_PAIR_CACHE_STATUS)) {

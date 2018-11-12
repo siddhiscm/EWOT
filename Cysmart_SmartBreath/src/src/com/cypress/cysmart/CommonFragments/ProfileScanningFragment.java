@@ -107,7 +107,7 @@ public class ProfileScanningFragment extends Fragment {
     private LeDeviceListAdapter mLeDeviceListAdapter;
     private SwipeRefreshLayout mSwipeLayout;
     private Map<String, Integer> mDevRssiValues;
-    
+
     //GUI elements
     private ListView mProfileListView;
     private TextView mRefreshText;
