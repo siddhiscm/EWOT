@@ -31,7 +31,6 @@
  */
 
 package com.cypress.cysmart.GATTDBFragments;
-
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -117,8 +116,6 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
     private String mStopNotifyText;
     private String mStartIndicateText;
     private String mStopIndicateText;
-
-
     public GattDetailsFragment create() {
         GattDetailsFragment fragment = new GattDetailsFragment();
         return fragment;
@@ -162,7 +159,6 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
                     mSwitch.setTextColor(getResources().getColor(R.color.red));
                     Log.d("switch","disable");
                 }
-
             }
         });
         mBackbtn = (ImageView) rootView.findViewById(R.id.imgback);
@@ -171,6 +167,8 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
         /**
          * Soft back button listner
          */
+
+
         mBackbtn.setOnClickListener(new OnClickListener() {
 
             @Override

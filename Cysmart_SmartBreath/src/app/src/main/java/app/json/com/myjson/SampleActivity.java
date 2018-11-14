@@ -3,10 +3,13 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.Image;
 import android.media.ToneGenerator;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -37,6 +40,25 @@ import java.util.Locale;
 import app.json.com.myjson.fragments.FragAboutUs;
 import app.json.com.myjson.fragments.FragDashBoard;
 import app.json.com.myjson.fragments.FragProtocalInfo;
+import android.Manifest;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGattDescriptor;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+
+import static android.content.Intent.ACTION_BATTERY_LOW;
 import static android.widget.Toast.LENGTH_LONG;
 public class SampleActivity extends AppCompatActivity {
     TextView tvDashboard, tvProtocal, tvAboutUs;
@@ -58,6 +80,7 @@ public class SampleActivity extends AppCompatActivity {
     PageIndicatorView pageIndicatorView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
@@ -113,7 +136,6 @@ public class SampleActivity extends AppCompatActivity {
                 mButtonStartPause.setVisibility(View.VISIBLE);
                 mButtoncancel.setVisibility(View.VISIBLE);
                 mButtoncancel.setEnabled(false);
-                //stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                 mButtonStartPause.setBackgroundColor(getResources().getColor(R.color.button_enable));
                 stateProgressBar.setVisibility(View.GONE);
                 mButtoncancel.setBackgroundColor(getResources().getColor(R.color.button_disable));
@@ -143,7 +165,6 @@ public class SampleActivity extends AppCompatActivity {
                 replacefragment(new FragProtocalInfo());
                 ImageView imageView=(ImageView)findViewById(R.id.smartbreath);
                 imageView.setVisibility(View.GONE);
-
             }
         });
         tvAboutUs.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +187,19 @@ public class SampleActivity extends AppCompatActivity {
             }
         });
     }
+    public void onReceive(Context context, Intent intent) {
+        if(intent.getAction().equals(ACTION_BATTERY_LOW)) {
+            IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+            Intent batteryStatus = context.registerReceiver(null, ifilter);
+            int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+            int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, 100);
+            int percent = (level*100)/scale;
+            if (percent <= 10 && percent > 5) {
+                vibrator();
+            }
+        }
+    }
+ 
 
     private void startTimer(final long startTimeInMillis) {
         mcountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
@@ -214,7 +248,6 @@ public class SampleActivity extends AppCompatActivity {
         mButtonStartPause.setEnabled(false);
         mTextViewCountDown.setVisibility(View.VISIBLE);
     }
-
 
     @SuppressLint("WrongConstant")
     public void stagesTime(){
@@ -288,6 +321,7 @@ public class SampleActivity extends AppCompatActivity {
         vibrator();
         tone();
     }
+
     public void vibrator() {
         try {
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -297,6 +331,7 @@ public class SampleActivity extends AppCompatActivity {
         }
 
     }
+
     public void tone(){
         ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
         toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP,200);
@@ -307,7 +342,7 @@ public class SampleActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         builder.setMessage("Do you want to Exit?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //if user pressed "yes", then he is allowed to exit from application
@@ -315,7 +350,7 @@ public class SampleActivity extends AppCompatActivity {
                 mcountDownTimer.cancel();
             }
         });
-        builder.setNegativeButton("No",new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("N0",new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //if user select "No", just cancel this dialog and continue with app
@@ -414,8 +449,8 @@ public class SampleActivity extends AppCompatActivity {
                 }
             }
         };
-        builder.setPositiveButton(" Ok", listener);
-        builder.setNegativeButton("Pause", listener);
+        builder.setPositiveButton("OK", listener);
+        builder.setNegativeButton("PAUSE", listener);
         builder.setCancelable(false);
         builder.show();
 

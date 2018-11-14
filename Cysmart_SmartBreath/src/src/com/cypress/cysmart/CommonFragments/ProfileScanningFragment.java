@@ -29,9 +29,7 @@
  * 
  * 
  */
-
 package com.cypress.cysmart.CommonFragments;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -66,13 +64,11 @@ import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.cypress.cysmart.BLEConnectionServices.BluetoothLeService;
 import com.cypress.cysmart.CommonUtils.Constants;
 import com.cypress.cysmart.CommonUtils.Logger;
 import com.cypress.cysmart.CommonUtils.Utils;
 import com.cypress.cysmart.R;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -130,29 +126,43 @@ public class ProfileScanningFragment extends Fragment {
      * This call back is called when a BLE device is found near by.
      */
     private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
-
         @Override
         public void onLeScan(final BluetoothDevice device, final int rssi,
                              byte[] scanRecord) {
-            Activity mActivity = getActivity();
-            if (mActivity != null) {
-                mActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!mSearchEnabled) {
-                            mLeDeviceListAdapter.addDevice(device, rssi);
-                            try {
-                                mLeDeviceListAdapter.notifyDataSetChanged();
-                            } catch (Exception e) {
-                                e.printStackTrace();
+            //String SmartBrethUIID = "00:A0:50";
+            String[] macAddressParts = device.getAddress().split(":");
+            // convert hex string to byte values
+            Integer[] macAddressBytes = new Integer[6];
+           // Logger.d("abc",device.getAddress());
+            for (int i = 0; i < 6; i++) {
+                Integer hex = Integer.parseInt(macAddressParts[i], 16);
+                macAddressBytes[i] = hex;
+                //Logger.d("abc",String.valueOf(macAddressBytes[i]));
+            }
+            if ((macAddressBytes[0] == 0x00) && (macAddressBytes[1] == 0xA0) && (macAddressBytes[2] == 0x50)) {
+                Logger.d("SMARTBREATH DEVICe");
+                Activity mActivity = getActivity();
+                if (mActivity != null) {
+                    mActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!mSearchEnabled) {
+                                mLeDeviceListAdapter.addDevice(device, rssi);
+                                try {
+                                    mLeDeviceListAdapter.notifyDataSetChanged();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                }
+            }else {
+                Logger.d("Other Device");
             }
-
-        }
+            }
     };
+
 
     /**
      * BroadcastReceiver for receiving the GATT communication status

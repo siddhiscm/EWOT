@@ -93,6 +93,7 @@ public class CySmartApplication extends Application {
             BluetoothGattDescriptor bluetoothGattDescriptor) {
         this.mBluetoothGattDescriptor = bluetoothGattDescriptor;
     }
+
     /**
      * getter method for blue tooth GATT Characteristic list
      *
@@ -110,6 +111,7 @@ public class CySmartApplication extends Application {
             List<BluetoothGattCharacteristic> gattCharacteristics) {
         this.mGattCharacteristics = gattCharacteristics;
     }
+
     public ArrayList<HashMap<String, BluetoothGattService>> getGattServiceMasterData() {
         return mGattServiceMasterData;
     }

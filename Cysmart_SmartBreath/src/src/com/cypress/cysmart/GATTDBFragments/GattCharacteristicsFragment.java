@@ -95,8 +95,7 @@ public class GattCharacteristicsFragment extends Fragment {
                 container, false);
         mApplication = (CySmartApplication) getActivity().getApplication();
         getActivity().getActionBar().setTitle(R.string.gatt_db);
-        mGattListView = (ListView) rootView
-                .findViewById(R.id.ListView_gatt_services);
+        mGattListView = (ListView) rootView.findViewById(R.id.ListView_gatt_services);
         mTextHeading = (TextView) rootView.findViewById(R.id.txtservices);
         mTextHeading.setText(getString(R.string.gatt_characteristics_heading));
         mBackButton = (ImageView) rootView.findViewById(R.id.imgback);

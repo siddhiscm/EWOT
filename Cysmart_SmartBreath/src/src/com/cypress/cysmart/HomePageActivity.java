@@ -66,7 +66,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
-
 import com.cypress.cysmart.BLEConnectionServices.BluetoothLeService;
 import com.cypress.cysmart.BLEServiceFragments.BatteryInformationService;
 import com.cypress.cysmart.BLEServiceFragments.BloodPressureService;
@@ -102,12 +101,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
-
 import app.json.com.myjson.SampleActivity;
-
-
 import com.kofigyan.stateprogressbar.StateProgressBar;
-
 /**
  * Base activity to hold all fragments
  */
@@ -169,7 +164,6 @@ public class HomePageActivity extends FragmentActivity implements
      * Broadcast receiver for getting the bonding information
      */
     private BroadcastReceiver mBondStateReceiver = new BroadcastReceiver() {
-
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();

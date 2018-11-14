@@ -32,6 +32,7 @@
 
 package com.cypress.cysmart.BLEConnectionServices;
 
+import android.annotation.TargetApi;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -46,6 +47,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -72,13 +74,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-
 /**
  * Service for managing connection and data communication with a GATT server
  * hosted on a given BlueTooth LE device.
  */
 public class BluetoothLeService extends Service {
-
     /**
      * GATT Status constants
      */
@@ -493,6 +493,7 @@ public class BluetoothLeService extends Service {
         }
     };
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void exchangeGattMtu(int mtu) {
 
         int retry = 5;
@@ -1217,6 +1218,7 @@ public class BluetoothLeService extends Service {
         Logger.d("gatt.writeCharacteristic(" + characteristic.getUuid() + ")");
         return gatt.writeCharacteristic(characteristic);
     }
+
 
 
     /**
