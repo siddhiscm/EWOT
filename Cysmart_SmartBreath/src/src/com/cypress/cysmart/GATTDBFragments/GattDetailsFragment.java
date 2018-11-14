@@ -116,8 +116,6 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
     private String mStopNotifyText;
     private String mStartIndicateText;
     private String mStopIndicateText;
-
-
     public GattDetailsFragment create() {
         GattDetailsFragment fragment = new GattDetailsFragment();
         return fragment;
@@ -169,6 +167,8 @@ public class GattDetailsFragment extends Fragment implements DialogListner, OnCl
         /**
          * Soft back button listner
          */
+
+
         mBackbtn.setOnClickListener(new OnClickListener() {
 
             @Override

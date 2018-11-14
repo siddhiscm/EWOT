@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">Smart Breathe</string>
+    <string name="drs">Basic Training Protocol":" \n\n \t\t\t This protocol is inspired by Phil Campbell’s
+        Interval Training Model. It stimulates HGH and EPO by utilizing simultaneous hypoxia and hypoglycemia,
+        separated by hyperoxia. This protocol can help you:
+        \n•	Improve your VO2 max
+        \n•	Stimulate HGH
+        \n•	Stimulate EPO
+        \n•	Reduce Inflammation
+        \n \n \t\t\t\t\t Total Duration":" 16 - 22 Mins"</string>
+    <string name="about">Siddhi World</string>
+    <string name="version">Smart Breath Version 1.0 </string>
+    <string name="Start">Start</string>
+    <string name="Cancel">Cancel</string>
+    <string name="basic_training_protocol">Basic Training Protocol:</string>
+    <string name="start_on_high_altitudeuntil_warmed_up_o2_sat_usually_drops_to_81">Start on high \n altitude \n untilsat usuallyd \n rops to 81%.</string>
+    <string name="time">Time</string>
+    <string name="level_until_you_have_been_fully_recovered_for_2_mins_o2_sat_climbs_to_99">level until \n you  have been \n fully recovered \n for 2 mins. O2 sat\n  climbs to 99%.</string>
+    <string name="increase_pace_to_sprint_and_switch_to_high_altitude_2_maintain_for_15_seconds">Increase pace \n to sprint and switch \n to high altitude,\n 2. Maintain for \n 15 seconds.</string>
+    <string name="maintain_pace_at_a_comfortable_level_o2_sat_climbs_to_99">Maintain pace at \n a comfortable level \n O2 sat climbs to 99%.</string>
+    <string name="typical_time">Typical Time</string>
+    <string name="method">Method</string>
+    <string name="altitude">Altitude</string>
+    <string name="phase">Phase</string>
+    <string name="notes_amp_mechanism"><![CDATA[Notes&Mechanism]]></string>
+    <string name="_3_9_mins">3–9 Mins</string>
+    <string name="exercise_for_6_mins_at_a_comfortable_pace_till_you_reach_your_target_pulse_rate">Exercise for\n 6 Mins at a \n comfortable pace \n till you reach \n your Target \n Pulse Rate.</string>
+    <string name="start_on_high_altitude_and_exercise_at_a_moderate_pace">Start on high \n altitude and \n exerciseat a \n moderate pace.</string>
+    <string name="exercise_for_8_mins_at_a_comfortable_pace_till_you_reach_your_target_pulse_rate">Exercise for 8 \n Mins at a \n comfortabla pace \n till you \n reach your \n Target\n Pulse Rate.</string>
+    <string name="protocol2">Advanced Training – Pre Performance Protocol:\n\n \t\t\t
+        This protocol is designed to maximise your blood oxygen levels in preparation for aerobic athletic performance. It further prepares you by:
+        \n • Opening your body’s capillaries for optimal blood delivery to muscles.
+        \n •	 Restoring blood flow to muscles likely inhibited by prior training or aerobic performance.
+       \n\n \t\t\t\t\t "Total Duration":" 12 - 18 Mins"</string>
+    <string name="protocol3">Advanced Training – Post Performance Protocol: \n\n \t\t\t Use this protocol after
+        your workout or after athletic performance to clear metabolic waste and restore blood flow. This protocol
+        usually cuts normal recovery time in half by:\n • Clearing inflammation which hinders recovery. \n
+        • Restoring blood flow to traumatized tissues to enable healing.
+        \n\n \t\t\t\t\t "Total Duration":" 14 – 20 Mins"</string>
+    <string name="protocol4">High Altitude Training – Recovery Protocol:\n\n \t\t\tThis protocol presumes
+        that you are at altitude and are having altitude related discomfort. Your discomfort likely reflects
+        inflammation from hypoxia. Follow the below protocol to reduce the inflammation and ease your discomfort.
+        \n\n\t\t\t\t\t "Total Duration":" 18 - 34 Mins"</string>
+    <string name="protocol5">High Altitude Training – Preparation Protocol: \n\n \t\t\t
+        It is important to prepare your body before trying to perform at High Altitudes.
+        The following protocol will assist with the preparation by: \n
+        • Creating more RBC (Red Blood Cells).\n
+        • Improving lung function. \n \n\t\t\t\t\t "Total Duration":" 23 - 29 Mins"</string>
+    <string name="protcol6">Metabolic Training – Brain Oxygenation Protocol: \n\n \t\t\t
+        This protocol is designed to restore oxygen to the head to help resolve inflammation in the brain, eyes and ears.
+        Many conditions involve inflammation in these areas, such as: \n \n
+        • Tinnitus – inflammation in the auditory processing of the inner ear.
+        \n\n \t\t\t\t\t "Total Duration":" 16 - 22 Mins"
+    </string>
+    <string name="welcome_siddhi">Welcome Siddhi!!!</string>
+    <string name="you_have_100_mins_of_o2_remaining">You have 100 mins of O2+ remaining</string>
+    <!-- BLE-->
+    <!--Data Logger file-->
+    <string name="dl_directory">CySmart</string>
+    <string name="dl_file_extension">.txt</string>
+    <string name="dl_commaseparator">" , "</string>
+
+    <!--Connection logs-->
+    <string name="dl_connection_request"> Connection request sent </string>
+    <string name="dl_connection_established"> Connection established </string>
+    <string name="dl_connection_establishing"> Connection establishing </string>
+    <string name="dl_connection_pairing_request"> Pairing request sent </string>
+    <string name="dl_connection_pairing_request_received"> Pairing request received </string>
+    <string name="dl_connection_paired"> Paired </string>
+    <string name="dl_connection_unpaired"> Unpaired </string>
+    <string name="dl_connection_pairing_unsupported"> Unable to pair. Check whether the device is advertising and supports pairing. </string>
+    <string name="dl_connection_disconnected"> Disconnected </string>
+    <string name="dl_disconnection_request"> Disconnection request sent </string>
+
+    <!--Service logs-->
+    <string name="dl_service_discovery_request"> Service discovery request sent </string>
+    <string name="dl_service_discovery_status"> Service discovery status </string>
+
+    <!--Characteristics logs-->
+    <string name="dl_characteristic_write_request"> Write request sent with value </string>
+    <string name="dl_characteristic_write_request_status"> Write request status </string>
+    <string name="dl_characteristic_start_notification"> Start notification request sent </string>
+    <string name="dl_characteristic_start_indication"> Start indication request sent </string>
+    <string name="dl_characteristic_notification_response"> Notification received with value </string>
+    <string name="dl_characteristic_indication_response"> Indication received with value </string>
+    <string name="dl_characteristic_stop_notification"> Stop notification request sent </string>
+    <string name="dl_characteristic_stop_indication"> Stop indication request sent </string>
+    <string name="dl_characteristic_read_request"> Read request sent </string>
+    <string name="dl_characteristic_read_request_status"> Read request status </string>
+    <string name="dl_characteristic_read_response"> Read response received with value </string>
+
+    <!--Common logs-->
+    <string name="dl_status_success">" - Success"</string>
+    <string name="dl_status_failure">" - Failed with error code : "</string>
+
+
+</resources>
+
+
+
+
+

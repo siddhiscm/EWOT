@@ -1220,6 +1220,7 @@ public class BluetoothLeService extends Service {
     }
 
 
+
     /**
      * Request a write on a given {@code BluetoothGattCharacteristic} for RGB.
      *
