@@ -1013,7 +1013,6 @@ public class BluetoothLeService extends Service {
                     mContext.getResources().getString(R.string.dl_service_discovery_request);
             Logger.datalog(dataLog);
         }
-
     }
 
     /**
