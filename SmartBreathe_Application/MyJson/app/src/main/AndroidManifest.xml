@@ -1,23 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD:SmartBreathe_Application/MyJson/app/src/main/AndroidManifest.xml
     package="app.json.com.myjson">
 
     <application
         android:allowBackup="true"
+=======
+    package="app.json.com.myjson"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="27" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.bluetooth.sensor.compass"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:debuggable="true"
+>>>>>>> e87c221b49d43b9f70c2367c54eb1697d2fd3a83:SmartBreathe_Demo_Application/BasicProtocolInfo/app/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+<<<<<<< HEAD:SmartBreathe_Application/MyJson/app/src/main/AndroidManifest.xml
         android:theme="@style/AppTheme">
         <activity android:name=".SampleActivity">
+=======
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="app.json.com.myjson.SampleActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
+>>>>>>> e87c221b49d43b9f70c2367c54eb1697d2fd3a83:SmartBreathe_Demo_Application/BasicProtocolInfo/app/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD:SmartBreathe_Application/MyJson/app/src/main/AndroidManifest.xml
         <activity android:name=".MainActivity">
 
+=======
+
+        <service
+            android:name="app.json.com.myjson.Bluetooth.BluetoothLeService"
+            android:enabled="true" />
+            android:enabled="true"/>
+        <activity android:name="app.json.com.myjson.MainActivity" >
+>>>>>>> e87c221b49d43b9f70c2367c54eb1697d2fd3a83:SmartBreathe_Demo_Application/BasicProtocolInfo/app/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml
         </activity>
     </application>
 

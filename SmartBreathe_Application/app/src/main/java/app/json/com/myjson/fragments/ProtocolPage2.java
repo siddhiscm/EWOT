@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import app.json.com.myjson.Constant;
 import app.json.com.myjson.R;
 
 public class ProtocolPage2 extends Fragment {
@@ -18,5 +19,14 @@ public class ProtocolPage2 extends Fragment {
         View view = inflater.inflate(R.layout.protocolpage2frag, container, false);
 
         return view;
+    }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            Constant.STATE=2;
+        }else {
+
+        }
     }
 }

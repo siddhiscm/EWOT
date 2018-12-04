@@ -1,54 +1,32 @@
 {
-  "protocol": {
-    "name":"protocol name",
-    "description":"protocol name",
-    "totalDuration":"protocol name",
-    "numberofStages":"protocol name",
-    "suitablePersonality" : "Aged above 60, Athelets, etc..",
-    "stages": [
-      {
-        "name1": "warm up",
-        "positiveO2": "10",
-        "negativeO2": "0",
-        "altitude":"",
-        "method":"",
-        "description":""
-      },{
-        "name1": "cool down",
-        "positiveO2": "10",
-        "negativeO2": "2",
-        "altitude":"",
-        "method":"",
-        "description":""
-      },{
-        "name1": "sprint",
-        "positiveO2": "10",
-        "negativeO2": "1",
-        "altitude":"",
-        "method":"",
-        "description":""
-      },{
-        "name1": "oxygen detox",
-        "positiveO2": "10",
-        "negativeO2": "0",
-        "altitude":"",
-        "method":"",
-        "description":""
-      },{
-        "name1": "EPO",
-        "positiveO2": "10",
-        "negativeO2": "0",
-        "altitude":"",
-        "method":"",
-        "description":""
-      },{
-        "name1": "HGH/Oxygen wash",
-        "positiveO2": "10",
-        "negativeO2": "0",
-        "altitude":"",
-        "method":"",
-        "description":""
-      }
+  "protocol": [{
+    "Phase": "Prep Time",
+    "Altitude": "-",
+    "Activity": "-",
+    "Time": "10 Secs"
+  },
+   {
+     "Phase": "Warm Up",
+     "Altitude": "-o2",
+     "Activity": "Deep Breathing \nand on Spot Jogging.",
+     "Time": "30 Secs"
+  },
+   {
+     "Phase": "EPO",
+     "Altitude": "-o2",
+     "Activity": "On Spot Running",
+     "Time": "30 Secs"
+  },
+   {
+     "Phase": "Oxygen Wash",
+     "Altitude": "+o2",
+     "Activity": "On Spot Running",
+     "Time": "30 Secs"
+  },{
+      "Phase": "Cool Down",
+      "Altitude": "+o2",
+      "Activity": "On Spot Jogging \nand Deep Breathing.",
+      "Time": "30 Secs"
+    }
     ]
-  }
 }

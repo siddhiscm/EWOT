@@ -18,17 +18,11 @@ import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
-    String[] descriptionData = {"WarmUp", "CoolDown", "Oxygen", "Sprint","EPO","HGS"};
-    StateProgressBar stateProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        stateProgressBar = findViewById(R.id.your_state_progress_bar_id);
-        stateProgressBar.setStateDescriptionData(descriptionData);
-
-        stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.FIVE);
 
         Resources res = getResources();
         InputStream stream = res.openRawResource(R.raw.protocol);

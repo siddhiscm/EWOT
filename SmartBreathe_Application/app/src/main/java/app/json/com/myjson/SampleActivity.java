@@ -27,6 +27,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Build;
@@ -69,6 +70,7 @@ import java.util.UUID;
 
 import app.json.com.myjson.Bluetooth.BluetoothLeService;
 import app.json.com.myjson.Bluetooth.SampleGattAttributes;
+import app.json.com.myjson.db.DbHelper;
 import app.json.com.myjson.fragments.FragAboutUs;
 import app.json.com.myjson.fragments.FragDashBoard;
 import app.json.com.myjson.fragments.FragProtocalInfo;
@@ -114,7 +116,7 @@ public class SampleActivity extends AppCompatActivity {
     private static final String TAG = "Bluetooth2";
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     ProgressBar mProgressBar = null;
-    String[] descriptionData = {"Prep\r\nTime", "Warm\r\nUp", "EPO", "Oxygen\r\nWash", "Cool\r\nDown"};
+    String[] descriptionData;
     StateProgressBar stateProgressBar;
     BluetoothDevice smartDevice;
     String myDevice;
@@ -126,7 +128,9 @@ public class SampleActivity extends AppCompatActivity {
     private BluetoothGattCharacteristic mReadCharacteristic;
     String result, previousState;
     byte[] convertedBytes;
+    private int mMaxStateNumber = 7;
     PageIndicatorView pageIndicatorView;
+    private DbHelper dbHelper;
 
     //PageIndicatorView pageIndicatorView;
     @Override
@@ -136,6 +140,7 @@ public class SampleActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_main);
+        dbHelper = new DbHelper(this);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
@@ -183,6 +188,33 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if (Constant.STATE == 1) {
+                    //   mTimeLeftInMillis=10000;
+                    descriptionData = new String[]{"Prep\r\nTime", "Warm\r\nUp", "EPO", "Oxygen\r\nWash", "HGS\r\nSprint", "HGS\r\nSprint", "Cool\r\nDown"};
+                    initializeStateProgress(StateProgressBar.StateNumber.SEVEN, descriptionData);
+                } else if (Constant.STATE == 2) {
+                    //  mTimeLeftInMillis=30000;
+                    descriptionData = new String[]{"Prep\r\nTime", "Warm\r\nUp", "Sprint", "Sprint", "Cool\r\nDown"};
+                    initializeStateProgress(StateProgressBar.StateNumber.FIVE, descriptionData);
+                } else if (Constant.STATE == 3) {
+                    //    mTimeLeftInMillis=20000;
+                    descriptionData = new String[]{"Prep\r\nTime", "Warm\r\nUp", "Sprint", "Sprint", "Cool\r\nDown"};
+                    initializeStateProgress(StateProgressBar.StateNumber.FIVE, descriptionData);
+                } else if (Constant.STATE == 4) {
+                    //  mTimeLeftInMillis=40000;
+                    descriptionData = new String[]{"Prep\r\nTime", "Warm\r\nUp4", "Oxygen\r\nWash", "Cool\r\nDown"};
+
+                    initializeStateProgress(StateProgressBar.StateNumber.FOUR, descriptionData);
+                } else if (Constant.STATE == 5) {
+                    //  mTimeLeftInMillis=10000;
+                    descriptionData = new String[]{"Prep\r\nTime", "Warm\r\nUp5", "EPO", "Oxygen\r\nWash", "Cool\r\nDown"};
+                    initializeStateProgress(StateProgressBar.StateNumber.FIVE, descriptionData);
+                } else if (Constant.STATE == 6) {
+                    //  mTimeLeftInMillis=10000;
+                    descriptionData = new String[]{"Prep\r\nTime", "Warm\r\nUp"};
+                    initializeStateProgress(StateProgressBar.StateNumber.TWO, descriptionData);
+                }
+
 
                 String buttonState = mButtonStartPause.getText().toString().trim();
 
@@ -209,6 +241,7 @@ public class SampleActivity extends AppCompatActivity {
                     //pageIndicatorView.setVisibility(View.INVISIBLE);
                     pageIndicatorView = (PageIndicatorView) findViewById(R.id.pageIndicatorView);
                     pageIndicatorView.setVisibility(View.GONE);
+
 
                 } else if (buttonState.equals("Resume")) {
 
@@ -304,6 +337,12 @@ public class SampleActivity extends AppCompatActivity {
         });
     }
 
+    private void initializeStateProgress(StateProgressBar.StateNumber state, String[] descriptionData) {
+
+        stateProgressBar.setStateDescriptionData(descriptionData);
+        stateProgressBar.setMaxStateNumber(state);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[],
@@ -348,7 +387,373 @@ public class SampleActivity extends AppCompatActivity {
                 mButtonStartPause.setVisibility(View.VISIBLE);
                 mProgressBar.setVisibility(View.INVISIBLE);
                 mButtonStartPause.setEnabled(true);
-                stagesTime();
+                if (Constant.STATE == 1) {
+                    vibrator();
+                    tone();
+
+                    switch (stateProgressBar.getCurrentStateNumber()) {
+                        case 1:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x00 0x10 0x00 0x00";//red
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 2:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x00 0x10 0x00 0x00"; //red
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 3:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_green));
+                            result = "0x10 0x00 0x00 0x00"; //green
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 4:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_green));
+                            result = "0x00 0x10 0x00 0x00"; //red
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 5:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.SIX);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_green));
+                            result = "0x10 0x00 0x00 0x00"; //green
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 6:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.SEVEN);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_green));
+                            result = "0x10 0x00 0x00 0x00"; //green
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 7:
+                            stateProgressBar.setAllStatesCompleted(true);
+                            result = "0x00 0x00 0x00 0x00 ";//empty
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stateProgressBar.setVisibility(View.GONE);
+                            mButtonStartPause.setVisibility(View.GONE);
+                            mButtoncancel.setVisibility(View.GONE);
+                            tvDashboard.setEnabled(true);
+                            resetState();
+                            vibrator();
+                            alert_finish();
+                            tone();
+                            mTimeLeftInMillis = START_TIME_IN_MILLIS;
+                            TIME = START_TIME_IN_MILLIS;
+                            mButtonStartPause.setText("Start");
+                            tvProtocal.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            break;
+                    }
+                } else if (Constant.STATE == 2) {
+                    vibrator();
+                    tone();
+                    switch (stateProgressBar.getCurrentStateNumber()) {
+                        case 1:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x00 0x00 0x00 0x00";//empty
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 2:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x00 0x10 0x00 0x00"; //red
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 3:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x10 0x00 0x00 0x00"; //green
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 4:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x10 0x00 0x00 0x00"; //green
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 5:
+                            stateProgressBar.setAllStatesCompleted(true);
+                            result = "0x00 0x00 0x00 0x00 ";//empty
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stateProgressBar.setVisibility(View.GONE);
+                            mButtonStartPause.setVisibility(View.GONE);
+                            mButtoncancel.setVisibility(View.GONE);
+                            tvDashboard.setEnabled(true);
+                            resetState();
+                            vibrator();
+                            alert_finish();
+                            tone();
+                            mTimeLeftInMillis = START_TIME_IN_MILLIS;
+                            TIME = START_TIME_IN_MILLIS;
+                            mButtonStartPause.setText("Start");
+                            tvProtocal.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            break;
+                    }
+                } else if (Constant.STATE == 3) {
+                    vibrator();
+                    tone();
+                    switch (stateProgressBar.getCurrentStateNumber()) {
+                        case 1:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x10 0x00 0x00 0x00";//green
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 2:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x00 0x10 0x00 0x00"; //red
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 3:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x10 0x00 0x00 0x00"; //green
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 4:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x10 0x00 0x00 0x00"; //green
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 5:
+                            stateProgressBar.setAllStatesCompleted(true);
+                            result = "0x00 0x00 0x00 0x00 ";//empty
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stateProgressBar.setVisibility(View.GONE);
+                            mButtonStartPause.setVisibility(View.GONE);
+                            mButtoncancel.setVisibility(View.GONE);
+                            tvDashboard.setEnabled(true);
+                            resetState();
+                            vibrator();
+                            alert_finish();
+                            tone();
+                            mTimeLeftInMillis = START_TIME_IN_MILLIS;
+                            TIME = START_TIME_IN_MILLIS;
+                            mButtonStartPause.setText("Start");
+                            tvProtocal.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            break;
+                    }
+                } else if (Constant.STATE == 4) {
+                    vibrator();
+                    tone();
+                    switch (stateProgressBar.getCurrentStateNumber()) {
+                        case 1:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x00 0x10 0x00 0x00";//red
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 2:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x00 0x10 0x00 0x00"; //red
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 3:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_green));
+                            result = "0x10 0x00 0x00 0x00"; //green
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 4:
+                            stateProgressBar.setAllStatesCompleted(true);
+                            result = "0x00 0x00 0x00 0x00 ";//empty
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stateProgressBar.setVisibility(View.GONE);
+                            mButtonStartPause.setVisibility(View.GONE);
+                            mButtoncancel.setVisibility(View.GONE);
+                            tvDashboard.setEnabled(true);
+                            resetState();
+                            vibrator();
+                            alert_finish();
+                            tone();
+                            mTimeLeftInMillis = START_TIME_IN_MILLIS;
+                            TIME = START_TIME_IN_MILLIS;
+                            mButtonStartPause.setText("Start");
+                            tvProtocal.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            break;
+                    }
+                } else if (Constant.STATE == 5) {
+                    vibrator();
+                    tone();
+
+                    switch (stateProgressBar.getCurrentStateNumber()) {
+                        case 1:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x00 0x10 0x00 0x00";//red
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 2:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x00 0x10 0x00 0x00"; //red
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 3:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_green));
+                            result = "0x10 0x00 0x00 0x00"; //green
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 4:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_green));
+                            result = "0x10 0x00 0x00 0x00"; //green
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 5:
+                            stateProgressBar.setAllStatesCompleted(true);
+                            result = "0x00 0x00 0x00 0x00 ";//empty
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stateProgressBar.setVisibility(View.GONE);
+                            mButtonStartPause.setVisibility(View.GONE);
+                            mButtoncancel.setVisibility(View.GONE);
+                            tvDashboard.setEnabled(true);
+                            resetState();
+                            vibrator();
+                            alert_finish();
+                            tone();
+                            mTimeLeftInMillis = START_TIME_IN_MILLIS;
+                            TIME = START_TIME_IN_MILLIS;
+                            mButtonStartPause.setText("Start");
+                            tvProtocal.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            break;
+                    }
+
+                } else if (Constant.STATE == 6) {
+
+                    vibrator();
+                    tone();
+                    switch (stateProgressBar.getCurrentStateNumber()) {
+                        case 1:
+                            stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                            mTimeLeftInMillis = 30100;//30 sec
+                            mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+                            result = "0x00 0x10 0x00 0x00";//red
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stages();
+                            break;
+                        case 2:
+                            stateProgressBar.setAllStatesCompleted(true);
+                            result = "0x00 0x00 0x00 0x00 ";//empty
+                            convertedBytes = convertingTobyteArray(result);
+                            writeCharaValue(convertedBytes);
+                            stateProgressBar.setVisibility(View.GONE);
+                            mButtonStartPause.setVisibility(View.GONE);
+                            mButtoncancel.setVisibility(View.GONE);
+                            tvDashboard.setEnabled(true);
+                            resetState();
+                            vibrator();
+                            alert_finish();
+                            tone();
+                            mTimeLeftInMillis = START_TIME_IN_MILLIS;
+                            TIME = START_TIME_IN_MILLIS;
+                            mButtonStartPause.setText("Start");
+                            tvProtocal.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setBackgroundColor(getResources().getColor(R.color.button_enable));
+                            tvAboutUs.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            tvProtocal.setEnabled(true);
+                            break;
+                    }
+
+                }
+
 
             }
         }.start();
@@ -372,82 +777,73 @@ public class SampleActivity extends AppCompatActivity {
         mProgressBar.setProgress((int) this.mTimeLeftInMillis / 1000);
     }
 
-    @SuppressLint("WrongConstant")
-    public void stagesTime() {
+//    @SuppressLint("WrongConstant")
+//    public void stagesTime() {
+//
+//
 
-        switch (stateProgressBar.getCurrentStateNumber()) {
-            case 1:
-                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
-                Toast toast = Toast.makeText(getApplicationContext(),"02- is Supplying", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-                mTimeLeftInMillis = 30100;//30 sec
-                result = "0x00 0x10 0x00 0x00";
-                convertedBytes = convertingTobyteArray(result);
-                writeCharaValue(convertedBytes);
-                stages();
-                break;
-            case 2:
-                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
-                toast = Toast.makeText(getApplicationContext(),"02- is Supplying", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-//                Toast.makeText(getApplicationContext(), "O2- is supplying", Toast.LENGTH_SHORT).show();
-//                Toast.setGravity(Gravity.CENTER, 0, 0);
-//                toast.show();
-                mTimeLeftInMillis = 30100;//30 sec
-                result = "0x00 0x10 0x00 0x00"; //red
-                convertedBytes = convertingTobyteArray(result);
-                writeCharaValue(convertedBytes);
-                stages();
-                break;
-            case 3:
-                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
-                toast = Toast.makeText(getApplicationContext(),"02+ is Supplying", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-                mTimeLeftInMillis = 30100;//30 sec
-                result = "0x10 0x00 0x00 0x00"; //green
-                convertedBytes = convertingTobyteArray(result);
-                writeCharaValue(convertedBytes);
-                stages();
-                break;
-            case 4:
-                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
-                toast = Toast.makeText(getApplicationContext(),"02+ is Supplying", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-                mTimeLeftInMillis = 30100;//30 sec
-                result = "0x10 0x00 0x00 0x00"; //green
-                convertedBytes = convertingTobyteArray(result);
-                writeCharaValue(convertedBytes);
-                stages();
-                break;
-            case 5:
-                stateProgressBar.setAllStatesCompleted(true);
-                result = "0x00 0x00 0x00 0x00 ";//empty
-                convertedBytes = convertingTobyteArray(result);
-                writeCharaValue(convertedBytes);
-                stateProgressBar.setVisibility(View.GONE);
-                mButtonStartPause.setVisibility(View.GONE);
-                mButtoncancel.setVisibility(View.GONE);
-                tvDashboard.setEnabled(true);
-                resetState();
-                vibrator();
-                alert_finish();
-                tone();
-                mTimeLeftInMillis = START_TIME_IN_MILLIS;
-                TIME = START_TIME_IN_MILLIS;
-                mButtonStartPause.setText("Start");
-                tvProtocal.setBackgroundColor(getResources().getColor(R.color.button_enable));
-                tvAboutUs.setBackgroundColor(getResources().getColor(R.color.button_enable));
-               tvAboutUs.setEnabled(true);
-                tvProtocal.setEnabled(true);
-                tvProtocal.setEnabled(true);
-                break;
-        }
+//        switch (stateProgressBar.getCurrentStateNumber()) {
+//            case 1:
+//                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+//                mTimeLeftInMillis = 30100;//30 sec
+//                mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+//                result = "0x00 0x10 0x00 0x00";//red
+//                convertedBytes = convertingTobyteArray(result);
+//                writeCharaValue(convertedBytes);
+//                stages();
+//                break;
+//            case 2:
+//                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
+//                mTimeLeftInMillis = 30100;//30 sec
+//                mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_red));
+//                result = "0x00 0x10 0x00 0x00"; //red
+//                convertedBytes = convertingTobyteArray(result);
+//                writeCharaValue(convertedBytes);
+//                stages();
+//                break;
+//            case 3:
+//                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+//                mTimeLeftInMillis = 30100;//30 sec
+//                mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_green));
+//                result = "0x10 0x00 0x00 0x00"; //green
+//                convertedBytes = convertingTobyteArray(result);
+//                writeCharaValue(convertedBytes);
+//                stages();
+//                break;
+//            case 4:
+//                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE);
+//                mTimeLeftInMillis = 30100;//30 sec
+//                mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_green));
+//                result = "0x10 0x00 0x00 0x00"; //green
+//                convertedBytes = convertingTobyteArray(result);
+//                writeCharaValue(convertedBytes);
+//                stages();
+//                break;
+//            case 5:
+//                stateProgressBar.setAllStatesCompleted(true);
+//                result = "0x00 0x00 0x00 0x00 ";//empty
+//                convertedBytes = convertingTobyteArray(result);
+//                writeCharaValue(convertedBytes);
+//                stateProgressBar.setVisibility(View.GONE);
+//                mButtonStartPause.setVisibility(View.GONE);
+//                mButtoncancel.setVisibility(View.GONE);
+//                tvDashboard.setEnabled(true);
+//                resetState();
+//                vibrator();
+//                alert_finish();
+//                tone();
+//                mTimeLeftInMillis = START_TIME_IN_MILLIS;
+//                TIME = START_TIME_IN_MILLIS;
+//                mButtonStartPause.setText("Start");
+//                tvProtocal.setBackgroundColor(getResources().getColor(R.color.button_enable));
+//                tvAboutUs.setBackgroundColor(getResources().getColor(R.color.button_enable));
+//               tvAboutUs.setEnabled(true);
+//                tvProtocal.setEnabled(true);
+//                tvProtocal.setEnabled(true);
+//                break;
+//        }
 
-    }
+    //   }
 
     private void stages() {
         startTimer(START_TIME_IN_MILLIS);
@@ -468,7 +864,9 @@ public class SampleActivity extends AppCompatActivity {
             Log.d("hgj", "vibrator exception: " + e);
         }
     }
+
     public void alert_finish() {
+        mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_blue));
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_LIGHT);
         builder1.setMessage("Congratulations! You have successfully finished your training session.");
         builder1.setCancelable(true);
@@ -486,6 +884,7 @@ public class SampleActivity extends AppCompatActivity {
     }
 
     public void alert_Terminated() {
+        mProgressBar.setBackground(getResources().getDrawable(R.drawable.drawable_circle_dark_blue));
         result = "0x00 0x00 0x00 0x00 "; // result is nothing 
         convertedBytes = convertingTobyteArray(result);
         writeCharaValue(convertedBytes);
@@ -528,7 +927,11 @@ public class SampleActivity extends AppCompatActivity {
                 // SampleActivity.super.onBackPressed();
                 //if user pressed "yes", then he is allowed to exit from application
                 finish();
-//                mcountDownTimer.cancel();
+                result = "0x00 0x00 0x00 0x00 ";//empty
+                convertedBytes = convertingTobyteArray(result);
+                writeCharaValue(convertedBytes);
+
+///               mcountDownTimer.cancel();
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -562,7 +965,6 @@ public class SampleActivity extends AppCompatActivity {
         return Integer.parseInt(string, 16);
     }
 
-    private int mMaxStateNumber = 5;
 
     public void resetState() {
         if (stateProgressBar.getCurrentStateNumber() >= mMaxStateNumber) {
@@ -582,8 +984,7 @@ public class SampleActivity extends AppCompatActivity {
         mButtoncancel = findViewById(R.id.cancel);
         mProgressBar.setVisibility(View.GONE);
         stateProgressBar = findViewById(R.id.your_state_progress_bar_id);
-        stateProgressBar.setStateDescriptionData(descriptionData);
-        stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.FIVE);
+        // stateProgressBar.setMaxStateNumber(StateProgressBar.StateNumber.SEVEN);
     }
 
     public void replacefragment(Fragment fragment) {
@@ -717,6 +1118,7 @@ public class SampleActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+
         if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
             turnOnBluetooth();
         }
@@ -724,25 +1126,6 @@ public class SampleActivity extends AppCompatActivity {
         if (mBluetoothAdapter.isEnabled()) {
             scan();
         }
-
-
-//        if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
-//            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-////            mBluetoothAdapter.disable();
-//            Log.d("BLE_STATUS", "status");
-//        } else {
-//            if (Build.VERSION.SDK_INT >= 21) {
-//                mLEScanner = mBluetoothAdapter.getBluetoothLeScanner();
-//                settings = new ScanSettings.Builder()
-//                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
-//                        .build();
-//                filters = new ArrayList<ScanFilter>();
-//                Log.d("BLE_SCAN", "scannig ");
-//            }
-//            scanLeDevice(true);
-//            Log.d("BLE TRUE", "TRUE");
-//        }
     }
 
     @Override
@@ -755,6 +1138,7 @@ public class SampleActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
 
         unregisterReceiver(mReceiver);
         if (mGatt == null) {
@@ -762,7 +1146,7 @@ public class SampleActivity extends AppCompatActivity {
         }
         mGatt.close();
         mGatt = null;
-        super.onDestroy();
+
     }
 
     @Override
@@ -835,7 +1219,7 @@ public class SampleActivity extends AppCompatActivity {
                         macAddressBytes[i] = hex;
                         //Logger.d("abc",String.valueOf(macAddressBytes[i]));
                     }
-                    if ((macAddressBytes[0] == 0x00) && (macAddressBytes[1] == 0xA0) && (macAddressBytes[2] == 0x50)) {
+                    if ((macAddressBytes[0] == 0x00) && (macAddressBytes[1] == 0xA0) && (macAddressBytes[2] == 0x50) && device.getName() == "B") {
 
                         Log.d("SMARTBREATH DEVICe", device.getName());
                         connectToDevice(device);
@@ -859,7 +1243,7 @@ public class SampleActivity extends AppCompatActivity {
 
             mGatt = device.connectGatt(this, true, gattCallback);
             scanLeDevice(false);// will stop after first device detection
-            Toast toast = Toast.makeText(getApplicationContext(),"Device Connected ", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(getApplicationContext(), "Device Connected ", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }

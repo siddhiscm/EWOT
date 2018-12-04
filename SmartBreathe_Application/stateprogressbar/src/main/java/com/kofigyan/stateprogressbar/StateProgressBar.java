@@ -33,7 +33,7 @@ public class StateProgressBar extends View {
 
 
     public enum StateNumber {
-        ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5),SIX(6);
+        ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5),SIX(6),SEVEN(7);
         private int value;
 
         StateNumber(int value) {
@@ -46,7 +46,7 @@ public class StateProgressBar extends View {
     }
 
     private static final int MIN_STATE_NUMBER = 1;
-    private static final int MAX_STATE_NUMBER = 6;
+    private static final int MAX_STATE_NUMBER = 7;
 
     private static final String STATE_SIZE_KEY = "mStateSize";
     private static final String STATE_LINE_THICKNESS_KEY = "mStateLineThickness";
